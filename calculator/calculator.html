@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		* {
+			background-color: transparent;
+		}
+		body {
+			width:90%;
+			height:20em; 
+		}
+
+		#calculator-boundary {
+			background-color: transparent;
+			padding-bottom: 50px;
+			height:100%;
+			width:100%;
+		}
+
+		#calculator-boundary table{
+			border-style:solid;
+			border-width:2px;
+			border-color: gray;
+			background-color:#E6EFF2;
+			padding:10px;
+			padding-bottom:5px;
+			padding-top:20px;
+			
+			margin:auto;
+			margin-bottom: 0%;
+		}
+
+		#calculator-boundary td{
+			max-width:45px;
+			min-width:45px;
+			height:45px;
+			
+			margin:0;
+			padding:1px;
+		}
+		#calculator-boundary #display {
+			padding:0 14px;
+	
+			background-color:#93DF94;
+			border-style:solid;
+			border-width:1px;
+			border-color:#56A257;
+			position:relative;
+			
+			font-size:20px;
+			font-family:monospace;
+			font-weight:900;
+			text-align:right;
+		}
+
+		#calculator-boundary #memsrow td{
+			max-width:30px;
+			min-width:30px;
+			height:30px;
+			
+			margin:0;
+			padding:1px;
+		}
+
+		#memory input{
+			position:relative;
+			width:45px;
+			height:30px;
+			padding:0;
+			margin:0;
+							
+			font-size:18px;
+			font-weight:900;
+		}
+
+		#clear{
+			color:#fff;
+			background-color:#E02D55;
+		}
+
+		#plus {
+			color:#fff;
+			background-color:#94AEB7;
+		}
+
+		#zero {
+			color:#fff;
+			background-color:#17324D;
+		}
+
+		input.nums{
+			width:45px;
+			height:30px;
+			padding:0;
+			margin:0;
+							
+			font-size:18px;
+			font-weight:900;
+			color:#fff;
+			background-color:#17324D;
+		}
+		input.operation{
+			width:45px;
+			height:30px;
+			padding:0;
+			margin:0;
+							
+			font-size:18px;
+			font-weight:900;
+			color:#fff;
+			background-color:#94AEB7;
+		}
+		input.mem{
+			color:#fff;
+			background-color:#37789E;
+		}
+
+		input.tall-button {
+			width:45px;
+			height:75px;
+			padding:0;
+			margin:0;
+							
+			font-size:18px;
+			font-weight:900;
+		}
+
+		input.wide-button {
+			width:92px;
+			height:30px;
+			padding:0;
+			margin:0;
+							
+			font-size:18px;
+			font-weight:900;
+		}
+		span.nums{
+			background-color:#17324D;
+			color:white;
+			padding:3px;
+			width:12px;
+			height:12px;
+			line-height:12px;
+			display:inline-block;
+			position: relative;
+			border:1px solid gray;
+		}
+		span.clear{
+
+			background-color:#E02D55;
+			color:white;
+			padding:3px;
+			width:12px;
+			height:12px;
+			line-height:12px;
+			display:inline-block;
+			position: relative;
+			border:1px solid gray;
+		}
+		span.operation{
+			background-color:#94AEB7;
+			color:white;
+			padding:3px;
+			width:12px;
+			height:12px;
+			line-height:12px;
+			display:inline-block;
+			position: relative;
+			border:1px solid gray;
+		}
+		
+
+		span.mem{
+			background-color:#37789E;
+			color:white;
+			padding:3px;
+			width:22px;
+			height:12px;
+			line-height:12px;
+			display:inline-block;
+			position: relative;
+			border:1px solid gray;
+		}
+	</style>
+	<header>
+	</header>
+	<body>
+		<div id = "calculator-boundary">
+			<table border = "0" cellpadding = "0" cellspacing = "0">
+				<tr>
+					<td id = "display" colspan = "6">0</td>
+				</tr>
+				<tr>
+					<td class="extra-space" colspan="6">&nbsp;</td>
+				</tr>
+				<tr id="memory">
+					<td></td>
+					<td>
+						<input class="mem" type="button" value="MC" onclick="memoryButton('MC'); " />
+					</td>
+					<td>
+						<input class="mem" type="button" value="MR" onclick="memoryButton('MR');" />
+					</td>
+					<td>
+						<input class="mem" type="button" value="MS" onclick="memoryButton('MS');" />
+					</td>
+					<td>
+						<input class="mem" type="button" value="M+" onclick="memoryButton('MP');" />
+					</td>
+					<td>
+						<input class="mem" type="button" value="M-" onclick="memoryButton('MM');" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class="operation" type="button" value="&plusmn;" onclick="operatorButton('plusminus');" />
+					</td>
+					<td>
+						<input class="nums" type="button" value="7" onclick="numberButton(this.value); " />
+					</td>
+					<td>
+						<input class="nums" type="button" value="8" onclick="numberButton(this.value);" />
+					</td>
+					<td>
+						<input class="nums" type="button" value="9" onclick="numberButton(this.value);" />
+					</td>
+					<td>
+						<input class="operation" type="button" value="%" onclick="operatorButton('percent');" />
+					</td>
+					<td>
+						<input class="operation" type="button" value="&#8730;" onclick="operatorButton('sqrt');" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class="operation pi" type="button" value="&pi;" onclick="numberButton('pi');" />
+					</td>
+					<td>
+						<input class="nums" type="button" value="4" onclick="numberButton(this.value);" />
+					</td>
+					<td>
+						<input class="nums" type="button" value="5" onclick="numberButton(this.value);" />
+					</td>
+					<td>
+						<input class="nums" type="button" value="6" onclick="numberButton(this.value);" />
+					</td>
+					<td>
+						<input class="operation" type="button" value="&#215;" onclick="operatorButton('mult');" />
+					</td>
+					<td>
+						<input class="operation" type="button" value="&#247;" onclick="operatorButton('div');" />
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2">
+						<input id="clear" class="tall-button" type="button" value="C" onclick="reset();" />
+					</td>
+					<td>
+						<input class="nums" type="button" value="1" onclick="numberButton(this.value);" />
+					</td>
+					<td>
+						<input class="nums" type="button" value="2" onclick="numberButton(this.value);" />
+					</td>
+					<td>
+						<input class="nums" type="button" value="3" onclick="numberButton(this.value);" />
+					</td>
+					<td rowspan="2">
+						<input id = "add" class="tall-button" type="button" value="+" onclick="operatorButton('add');" />
+					</td>
+					<td>
+						<input class="operation" type="button" value="&minus;" onclick="operatorButton('sub');" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input id = "zero" class="wide-button" type="button" value="0" onclick="numberButton(this.value);" />
+					</td>
+					<td>
+						<input class="nums" type="button" value="." onclick="numberButton('.');" />
+					</td>
+					<td>
+						<input class="operation" type="button" value="=" onclick="operatorButton('equals');" />
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>	
+	<script>
+		//IMPLEMENT PLUS MINUS AND MEMORY
+		var expression = [null, null, null];
+		var pointer = 0;
+		var error = false;
+		var memory = "0";
+		var readMemory = false;
+		var pi = "3.14159265358979";
+
+		function hasPoint (pointer) {
+			if (typeof expression[pointer] == "string")
+				return (expression[pointer].indexOf(".") !== -1);
+			else
+				return false;
+}
+		function appendNumber (pointer, input) {
+			if (error)
+				return;
+
+			if (expression[pointer] == null)
+				expression[pointer] = "0";
+			
+			/*
+			if (/[^0-9-\.]/.test(expression[pointer]))
+				return expression[pointer].toString();
+			
+			if (/[^0-9-\.]/.test(input))
+				return expression[pointer].toString();
+			*/
+			if (expression[pointer].length >= 15)
+				return expression[pointer].toString();
+				
+			if (expression[pointer] == "0") {
+				if (input == "0")
+					return "0";
+				
+				if (input == ".")
+					return "0.";
+					
+				return input.toString();
+			}
+			
+			if (!(input == "." && hasPoint(pointer)))
+				return expression[pointer] + input;
+			else
+				return expression[pointer].toString();
+		}
+
+		function reset() {
+			expression = [null, null, null];
+			pointer = 0;
+			error = false;
+			memory = 0;
+
+			refreshCalc();
+		}
+
+		function refreshCalc() {
+			if (pointer == 0 || pointer == 3 || pointer == 2 && expression[2] == null) {
+				display(expression[0]);
+				return;
+			}
+
+			if (pointer == 2) {
+				display(expression[2]);
+				return;
+			}
+		}
+		
+		function numberButton(input) {
+			if (error) {
+				return;
+			}
+
+			if (input == "pi") {
+				if (pointer == 0 || pointer == 3) {
+					expression[0] = pi;
+					refreshCalc();
+					return;
+				}
+				if (pointer == 2) {
+					expression[2] = pi;
+					refreshCalc();
+					return;
+				}
+			}
+			input = input.toString();
+			if (pointer == 0) {
+				expression[1] = null;
+				expression[2] = null;
+			}
+
+			if (pointer == 3) {
+				expression[0] = null;
+				pointer = 0;
+			}
+			expression[pointer] = appendNumber(pointer, input);
+			display(expression[pointer]);
+		}
+
+		function operatorButton(input) {
+			if (error)
+				return;
+	
+			input = input.toString();
+
+			if (input == "add" || input == "sub" || input == "mult" || input == "div") {
+
+				
+				if (pointer == 2 && expression[2] == null) {
+					expression[1] = input;
+				}
+
+				if (pointer == 2 && expression[2] != null) {
+					var result = calculate(expression);
+					if (result === false) {
+						error = true;
+					}
+					expression[0] = result;
+					display(expression[0]);
+					expression[1] = input;
+					expression[2] = null;
+					return;
+				}
+
+				if (expression[0] == null) {
+					expression[0] = "0";
+				}
+
+				expression[1] = input;
+				expression[2] = null;
+				pointer = 2;
+				/*var operation;
+
+				if (expression[1] == "add") {
+					operation = "+";
+				} else if (expression[1] == "sub") {
+					operation = "-";
+				} else if (expression[1] == "mult") {
+					operation = "*";
+				} else {
+					operation = "/";
+				}
+
+				display(operation);*/
+
+			} else if (input == "equals") {
+				var result = calculate(expression);
+				if (result === false) {
+					error = true;
+				}
+				expression[0] = result;
+				display(expression[0]);
+				pointer = 3;
+			} else if (input == "percent") {
+				if (expression[0] == null) {
+					display(0);
+					return;
+				}
+				if (pointer == 2) {
+					if (expression[2] == null) {
+						error = true;
+						display(expression[2]);
+						return;
+					}
+					var result = performArithmetic(expression[0] * expression[2]/100);
+					if (result === false) {
+						error = true;
+					}
+					expression[2] = result;
+					display(expression[2]);
+					return;
+				}
+				var result = performArithmetic(expression[0]/100);
+				if (result === false) {
+					error = true;
+				}
+				expression[0] = result;
+				display(expression[0]);
+				pointer = 3;
+			} else if (input == "sqrt") { //THERE"S STILL A PROBLEM WITH SQRT
+				if (pointer == 2) {
+					if (calculate(expression) === false) {
+						error = true;
+					}
+					var result = performArithmetic(Math.sqrt(calculate(expression)));
+					if (result === false) {
+						error = true;
+					}
+					expression[0] = result;
+					display(expression[0]);
+					pointer = 3;
+					return;
+				}
+				var result = performArithmetic(Math.sqrt(calculate(expression[0]))); 
+			
+				if (result === false)
+					error = true;
+				expression[0] = result;
+				display(expression[0]);
+				pointer = 3;
+			}
+		}
+
+		function calculate(expr) {
+			if (error) {
+				return false;
+			}
+			if (expr[0] == null) {
+				return "0";
+			}
+			if (expr[1] == null) {
+				return eval(expression[0]).toString();
+			}
+			if (expr[2] == null) {
+				error = true;
+				display(expr[2]);
+			}
+
+			var operation;
+			if (expr[1] == "add") {
+				operation = "+";
+			} else if (expr[1] == "sub") {
+				operation = "-";
+			} else if (expr[1] == "mult") {
+				operation = "*";
+			} else if (expr[1] == "div") {
+				operation = "/";
+			} 
+
+			return performArithmetic("" + expr[0] + operation + expr[2]);
+		}
+
+		function performArithmetic(input) {
+			var answer = eval(input);
+			return answer;
+		}
+
+		function display(output) {
+			if (error) {
+				document.getElementById("display").innerHTML = "ERROR";
+				return;
+			}
+			if (output == null) {
+				var output = "0";
+			}
+			var parts = output.toString().split(".");
+			parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			var display = parts.join(".");
+			if (memory != "0")
+				display = '<div id="memory">M</div>' + display;
+			
+			document.getElementById("display").innerHTML = display;
+	
+		}
+	</script>
+</html>
