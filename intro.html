@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		tr{
+			height: 25em;
+			width: 100%;
+			margin-top: 3%;
+		}
+		#firstColumn{
+			width: 30%
+		}
+
+		p{
+			margin-left: 20%;
+			color: black;
+			font-family: Papyrus, fantasy;
+			font-size: 2em;
+		}
+
+	</style>
+	<table>
+		<tr>
+			<td id = "firstColumn">
+				<p>Welcome to my website! 
+				<br>My name is Eric and this is where 
+				I will be showcasing some of my projects.</br></p>
+			</td>
+			<td>
+				<img class = "mySlides" src = "images/cal.png" style = "margin-left: 20%;  height:20em;width:40%">
+				<img class = "mySlides" src = "images/lakers.png" style = "margin-left: 20%; margin-top:3%; height:20em;width:40%">
+			</td>
+		</tr>
+	</table>
+	<script>
+		var myIndex = 0;
+		rotate();
+
+		function rotate() {
+			var x = document.getElementsByClassName("mySlides");
+			for(var i = 0; i < x.length; i++) {
+				x[i].style.display = "none";
+			}
+			myIndex++;
+			if (myIndex > x.length) {
+				myIndex = 1
+			}    
+    		x[myIndex-1].style.display = "block";  
+    		setTimeout(rotate, 2000);
+		}
+	</script>
+</html>

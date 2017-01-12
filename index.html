@@ -1,9 +1,112 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
-  </head>
-  <body>
-    <div></div>
-  </body>
+    <head>
+        <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+    </head>
+    <body>
+    
+    <header>Welcome to My Website</header>
+    <nav>
+		<a href="intro.html" id = "intro" class = "link-unselected" onclick = "changeClass(this.id)" target="targetFrame"><strong>&nbsp&nbspABOUT ME</strong></a>
+		<p class = "blank"></p>
+		
+        <div class = "dropdown">
+            <button onclick = "dropDown(this.id)" id = "projects" class = "link-unselected">PROJECTS</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="gpaCalc/gpaCalc.html" id = "projects1" class = "link-unselected" onclick = "changeClass(this.id)" target="targetFrame">GPA Calculator</a>
+
+                <a href="converter/converter.html" id = "projects2" class = "link-unselected" onclick = "changeClass(this.id)" target="targetFrame">Converter</a>
+
+                <a href="calculator/calculator.html" id = "projects3" class = "link-unselected" onclick = "changeClass(this.id)" target="targetFrame">Calculator</a>
+            </div>
+        </div>
+		
+        <p class = "blank"></p>
+		<a href="contact.html" id = "aboutMe" class = "link-unselected" onclick = "changeClass(this.id)" target="targetFrame"><strong>&nbsp&nbspCONTACT INFO</strong></a>
+    </nav>
+    <article id = "content1">
+    	<iframe height="95%" width="95%" src="intro.html" name="targetFrame"></iframe>
+    </article>
+
+    </body>
+
+    <script>
+        function changeClass(source) {
+            var introLink = document.getElementById("intro");
+            var projectLink = document.getElementById("projects")
+            var project1Link = document.getElementById("projects1");
+            var project2Link = document.getElementById("projects2");
+            var project3Link = document.getElementById("projects3");
+            var aboutMeLink = document.getElementById("aboutMe");
+
+            if(source == "intro") {
+                introLink.className = "link-selected";
+                projects.className = "link-unselected";
+                project1Link.className = "link-unselected";
+                project2Link.className = "link-unselected";
+                project3Link.className = "link-unselected";
+                aboutMeLink.className = "link-unselected";
+            } else if (source == "projects1") {
+                introLink.className = "link-unselected";
+                projects.className = "link-selected";
+                project1Link.className = "link-selected";
+                project2Link.className = "link-unselected";
+                project3Link.className = "link-unselected";
+                aboutMeLink.className = "link-unselected";
+            } else if (source == "projects2"){
+                introLink.className = "link-unselected";
+                projects.className = "link-selected";
+                project1Link.className = "link-unselected";
+                project2Link.className = "link-selected";
+                project3Link.className = "link-unselected";
+                aboutMeLink.className = "link-unselected";
+            } else if (source == "projects3") {
+                introLink.className = "link-unselected";
+                projects.className = "link-selected";
+                project1Link.className = "link-unselected";
+                project2Link.className = "link-unselected";
+                project3Link.className = "link-selected";
+                aboutMeLink.className = "link-unselected";
+            } else {
+                introLink.className = "link-unselected";
+                projects.className = "link-unselected";
+                project1Link.className = "link-unselected";
+                project2Link.className = "link-unselected";
+                project3Link.className = "link-unselected";
+                aboutMeLink.className = "link-selected";
+            }
+        }
+
+        function dropDown(source) {
+            var introLink = document.getElementById("intro");
+            var projectLink = document.getElementById("projects")
+            var project1Link = document.getElementById("projects1");
+            var project2Link = document.getElementById("projects2");
+            var project3Link = document.getElementById("projects3");
+            var aboutMeLink = document.getElementById("aboutMe");
+            introLink.className = "link-unselected";
+            projects.className = "link-selected";
+            project1Link.className = "link-unselected";
+            project2Link.className = "link-unselected";
+            project3Link.className = "link-unselected";
+            aboutMeLink.className = "link-unselected";
+
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+          if (!event.target.matches('#projects') && (!event.target.matches('#projects1') && !event.target.matches('#projects2') && !event.target.matches('#projects3'))) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+              }
+            }
+          }
+        }
+    </script>
 </html>

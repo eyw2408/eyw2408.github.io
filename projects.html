@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		table{
+			width: 100%;
+		}
+		tr{
+			height: 25em;
+			width: 100%;
+			margin-top: 3%;
+		}
+		a {
+			text-decoration: none;
+			color: white;
+			font-family: Papyrus, fantasy;
+			font-size: 1.5em;
+		}
+		a:hover {
+			color: red;
+		}
+		.link-selected{
+			text-decoration: none;
+			color: red;
+			font-family: Papyrus, fantasy;
+			font-size: 1.5em;
+		}
+		.link-unselected{
+			text-decoration: none;
+			color: white;
+			font-family: Papyrus, fantasy;
+			font-size: 1.5em;
+		}
+		
+		iframe{
+			border-radius: 1em;
+		}
+		#firstColumn{
+			width: 30%
+		}
+		
+
+	</style>
+	<table>
+		<tr>
+			<td id = "firstColumn">
+				<ul>
+					<li>
+						<a href="https://wu20170101.github.io" id = "gpaCalc" class = "link-unselected" onclick = "changeClass(this.id)"  target="targetFrame2">GPA Calculator</a>
+					</li>
+					<li>
+						<a href="converter.html" id = "converter" class = "link-unselected" onclick = "changeClass(this.id)" target="targetFrame2">Converter</a>
+					</li>
+					<li>
+						<a href="calculator.html" id = "calculator" class = "link-unselected" onclick = "changeClass(this.id)" target="targetFrame2">Calculator</a>
+					</li>
+				</ul>
+			</td>	
+			<td>
+				<iframe height="102%" width="100%" src="gpaCalc.html" name="targetFrame2"></iframe>
+			</td>
+		</tr>
+	</table>
+	<script>
+		function changeClass(source) {
+			var gpaLink = document.getElementById("gpaCalc");
+			var converterLink = document.getElementById("converter");
+			var calculatorLink = document.getElementById("calculator");
+
+			if(source == "gpaCalc") {
+				gpaLink.className = "link-selected";
+				converterLink.className = "link-unselected";
+				calculatorLink.className = "link-unselected";
+
+			} else if (source == converter) {
+				gpaLink.className = "link-unselected";
+				converterLink.className = "link-selected";
+				calculatorLink.className = "link-unselected";
+			} else {
+				gpaLink.className = "link-unselected";
+				converterLink.className = "link-unselected";
+				calculatorLink.className = "link-selected";
+			}
+		}
+	</script>
+</html>

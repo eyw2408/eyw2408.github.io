@@ -1,7 +1,145 @@
-div{
-	height: 0%;
-	width: 20%;
-	border: 2px solid black;
-	border-radius: 5px;
-	background-color: #308014;
+/** {
+	background-color: silver;
+}*/
+
+body{
+	background-image: url("images/background1.jpg");
 }
+header {
+	 padding: 1em;
+	 color: white; 
+	 font-family: "Impact";
+	 font-size: 2.8em;
+	 margin-left: 30%;
+	 margin-right: 25%;
+	 white-space: nowrap;
+	 overflow: hidden;
+	 animation: type 10s 
+	 
+}
+
+@keyframes type{ 
+	from { width: 0 }
+ 	to { width: 100% }
+ 	/*0%    {width:0}
+	25%   {width:100%}
+	50%   {width: 0}
+	75%   {width:100%;}
+	100%  {width:0}
+	/*75%  {width:50%}*/
+} 
+/*@keyframes header{
+	0%,  {color:white;}
+	25%  {color:yellow;}
+	50%  {color:blue;}
+	75%  {color:green;}
+	100% {color:white;}
+}*/
+nav {
+	float:left;
+	width: 20%;
+	text-align: left;
+	
+}
+nav a{
+	font-family: Papyrus, fantasy;
+	font-size: 0.7em;
+	text-decoration: none;
+	color: white;
+}
+
+nav a:hover {
+	color: red;
+}
+h2 {
+	margin-left: 10%;
+}
+button {
+	font-weight: bold;
+}
+
+a {
+	font-weight: bold;
+}
+
+iframe{
+	border:2px solid black;
+	border-radius: 1em;
+	/*background-color: black;*/
+	background-image: url("images/background2.jpg");
+	/*background-color: skyblue; */
+	
+}
+#content1{
+	margin-left: 17%;
+	margin-right: 10%;
+	height: 30em;
+	width: 70em;
+
+	
+}
+.blank{
+	margin-bottom: 20%;
+}
+
+.link-selected{
+	margin-left: 0.8em;
+	font-family: Papyrus, fantasy;
+	font-size: 1.1em;
+    background-color: transparent;
+    outline :none;
+    color: red;
+    border: none;
+    cursor: pointer;
+}
+.link-unselected{
+	margin-left: 0.8em;
+	font-family: Papyrus, fantasy;
+	font-size: 1.1em;
+    background-color: transparent;
+    outline :none;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.link-unselected:hover, .link-unselected:focus {
+	color: red;
+}
+
+/*.drop {
+	margin-left: 0.8em;
+	font-family: Papyrus, fantasy;
+	font-size: 1.1em;
+    background-color: transparent;
+    outline :none;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.drop:hover, .drop:focus {
+    color: red;
+}*/
+
+.dropdown-content {
+    display: none;
+    margin-left: 0.8em;
+    background-color: transparent;
+    min-width: 160px;
+    overflow: auto;
+    font-size: 0.8em;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {
+	color:red;
+}
+
+.show {display:block;}
