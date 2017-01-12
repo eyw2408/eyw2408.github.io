@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		*{
+			background-color: white;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		table{
+			width:100%;
+			height:20em;
+			background-color: #4CAF50;
+			border:none;
+		}
+		td a{
+			text-decoration: none;
+			font-size: 1em;
+		}
+		
+		#header{
+			height:2em;
+			background-color: black;
+		}
+
+		.link-selected{
+			text-decoration: none;
+			font-size: 1em;
+			color: black;
+			background-color: gray;
+		}
+		.link-unselected{
+			text-decoration: none;
+			font-size: 1em;
+			color: black;
+			background-color: #4CAF50;
+		}
+	</style>
+	<table>
+		<tr id = "header">
+			<div>
+				<td id = "weight" class = "link-unselected">
+					<a  id = "wei" href = "weight.html" onclick = "changeClass(this.id)" target="targetFrame3"><strong>Weight</strong></a> 
+				</td>
+				<td id = "length" class = "link-unselected">
+					<a  id = "len" href = "length.html" onclick = "changeClass(this.id)" target="targetFrame3"><strong>Length</strong></a> 
+				</td>
+				<td id = "temperature" class = "link-unselected">
+					<a id = "temp" href = "temperature.html" onclick = "changeClass(this.id)" target="targetFrame3"><strong>Temperature</strong></a>  
+				</td>
+			</div>
+			
+		</tr>
+		<tr>
+			<td colspan = "3">
+				<iframe height="95%" width="100%" src="weight.html" name="targetFrame3"></iframe>
+			</td>
+		</tr>
+	</table>
+	<script>
+        function changeClass(source) {
+            var weightLink = document.getElementById("weight");
+            var lengthLink = document.getElementById("length");
+            var temperatureLink = document.getElementById("temperature");
+
+            if(source == "wei") {
+                weightLink.className = "link-selected";
+                lengthLink.className = "link-unselected";
+                temperatureLink.className = "link-unselected";
+            } else if (source == "len") {
+                lengthLink.className = "link-selected";
+                weightLink.className = "link-unselected";
+                temperatureLink.className = "link-unselected";
+            } else {
+                temperatureLink.className = "link-selected";
+                weightLink.className = "link-unselected";
+                lengthLink.className = "link-unselected";
+            }
+        }
+    </script>
+</html>

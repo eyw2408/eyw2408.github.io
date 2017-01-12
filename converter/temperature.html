@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		*{
+			background-color: transparent;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		table{
+			width:100%;
+			height:15em;
+		}
+		input {
+			border: 1px solid black;
+		}
+
+		#header{
+			height:2em;
+		}
+		.conversions{
+			display: inline-block;
+		}
+	</style>
+	<table>
+		<tr id = "header">
+			<td>
+				Type a value in any of the fields to convert between temperature measurements. 
+			</td>
+			
+		</tr>
+		<tr>
+			<td>
+				<div class="conversions">
+				    <label><strong>Celsius</strong><div></div></label>
+				    <input id="inputCelsius" type="number" placeholder="Celsius"oninput="tempConverter(this.id,this.value)" onchange="tempConverter(this.id,this.value)">
+			  	</div>
+			  	<div class="conversions">
+				    <label><strong>Fahrenheit</strong><div></div></label>
+				    <input id="inputFahrenheit" type="number" placeholder="Fahrenheit" oninput="tempConverter(this.id,this.value)" onchange="tempConverter(this.id,this.value)">
+			  	</div>
+			</td>
+		</tr>
+	</table>
+	<script>
+		function tempConverter(source,valNum) {
+			valNum = parseFloat(valNum);
+		  	var inputCelsius = document.getElementById("inputCelsius");
+		  	var inputFahrenheit = document.getElementById("inputFahrenheit");
+		  
+		  	if (source=="inputCelsius") {
+		    	inputFahrenheit.value=(valNum*(9/5)+32).toFixed(4);
+		  	}
+		  	if (source=="inputFahrenheit") {
+		    	inputCelsius.value=((valNum-32)*(5/9)).toFixed(4);
+
+			}
+		}
+	</script>
+
+</html>

@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+    margin: 10px auto;
+    background-color : white;
+    width: 70%;
+}
+h1 {
+    font-size: 2em;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+p {
+    font-size: 1.5em;
+    line-height: 1.4em;
+    color: #333;
+}
+
+	
+/**	
+nav ul, footer ul {
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+    padding: 0px;
+    list-style: none;
+    font-weight: bold;
+}
+nav ul li, footer ul li {
+    display: inline;
+    margin-right: 20px;
+}
+a {
+    text-decoration: none;
+    color: #999;
+}
+a:hover {
+    text-decoration: underline;
+}
+footer {
+    border-top: 1px solid #d5d5d5;
+    font-size: .8em;
+}
+	
+ul.posts { 
+    margin: 20px auto 40px; 
+    font-size: 1.5em;
+}
+
+ul.posts li {
+    list-style: none;
+}
+**/
+.section_contents {
+	font-size: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+}	
+	
+.section_header {
+        padding-top: 1px;
+        padding-right: 5px;
+        padding-bottom: 1px;
+        padding-left: 5px;		
+	background-color:#4CAF50;
+	color:white;
+	font-size: 120%;
+        font-family: Arial, Helvetica, sans-serif;
+}	
+
+.section_footer {
+	padding: 5px;
+        font-size: 1.3wem;
+        line-height: 1.2em;
+        color: #333;	
+        font-family: Arial, Helvetica, sans-serif;
+}	
+
+.button {
+	background-color:#4CAF50;
+	color:white;
+        padding-top: 3px;
+        padding-right: 16px;
+        padding-bottom: 3px;
+        padding-left: 16px;	
+	font-size: 100%;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);	
+        font-family: Arial, Helvetica, sans-serif;
+}	
+
+	
+}	
+	
+</style>
+
+<script type="text/javascript">
+	
+  function calculate( ) {
+	var unit_total = 0.0;  
+	var grade_point_total = 0.0;  
+        //alert("123");  
+	var cgrades = document.getElementsByTagName("select");
+	//alert(cgrades);
+	//alert("length =" + cgrades.length);
+        for(var i=0; i < cgrades.length; i++) {
+		//alert("val = " + cgrades[i].value);
+		var cgrade_val = parseFloat(cgrades[i].value);
+		if(isNaN(cgrade_val)) {
+			//valert("invlid at" + i);
+			continue;
+		}        			
+		
+		// Get id of cunit of each row. Convention, in case, cgrade_id = cgrade1, cunit_id = cunit1  
+		var cgrade_id  = cgrades[i].id
+                var cunit_id = cgrade_id.replace("grade", "unit");		
+	
+		var cunit  = document.getElementById(cunit_id);
+		if(!cunit) {
+			// alert("invlid at" + i);			
+			continue;
+		}
+			
+		// alert("cunit.value=" + cunit.value);
+		cunit_val = parseFloat(cunit.value);
+		if(isNaN(cunit_val) ||cunit_val <= 0) {
+			// alert("invlid at" + i);
+			continue;
+		}        			
+		
+		unit_total = unit_total + cunit_val;
+		grade_point_total = grade_point_total + (cgrade_val * cunit_val);
+        }	  
+	gpa = grade_point_total / unit_total;
+	var cunit_total = document.getElementById("cunit_total");
+	var cgpa = document.getElementById("cgpa");
+	cunit_total.textContent = "Total Units : " + unit_total;
+        cgpa.textContent = "Cumulative GPA : " + gpa;
+  }	
+	
+  function addNewSemester() {
+	  
+	var semester = getNewSemesterNumber();  
+	var div_main = document.getElementById("main_body");
+        //alert("div_main" + div_main)   	  
+        //for(var i=0; i < div_main.children.length; i++) {
+	//   alert(i + " : " + div_main.children[i].id);  
+	//}  
+	var div_s1 = div_main.firstElementChild;
+        var clone = div_s1.cloneNode(true); // true means clone all childNodes and all event handlers
+        clone.id = "div_smstr2";
+	 
+	// update ids in cloned section with proper suffix = "_s<sememster#>"
+        updateIdsInClonedSection(clone,semester);
+	  
+        div_main.appendChild(clone);						    
+  }	  
+
+  function getNewSemesterNumber() {
+	var smstr_count = document.getElementById("smstr_count");
+ 	if(smstr_count) {
+ 		var smstr_count_val = parseInt(smstr_count.value);
+ 		if(!isNaN(smstr_count_val)) {
+			var newSemester = ++smstr_count_val;
+ 			smstr_count.value = newSemester;
+ 			return newSemester;
+ 		}        			
+ 	}		
+	return 1;	  
+  }	  
+
+  function updateIdsInClonedSection(cloned, semester) {
+	if(cloned.id && cloned.id == "div_hd_s1") {
+		// Update the Semester Header  
+		cloned.textContent = "Sememster " + semester;
+	}	
+	  
+        if(cloned.id && cloned.id.endsWith("_s1")) {
+		// Update id of grade and unit fields  
+           	cloned.id = cloned.id.replace("_s1", "_s" + semester);
+	        // alert("updated = " + cloned.id);   
+        }   
+	  
+	var children = cloned.children;
+	if(!children || children.length ==0) {
+		// no children 
+        	return;
+	}
+	  
+        for(var i=0; i < cloned.children.length; i++) {
+		updateIdsInClonedSection(cloned.children[i], semester);	
+	}  
+
+  }
+
+  function pageLoaded() {
+	// alert(window.location.search);	  
+  }	  
+	
+</script>	
+
+	
+	<title>College GPA Calculator</title>
+</head>
+<body >
+	<div>
+	<h1> College GPA Calculator</h1>
+	<!--<form id="f1" > -->
+	<div id="main_body">
+        
+	<div id="div_smstr1">
+
+        <div class="section_header" id="div_hd_s1" >Semester 1 </div> 
+	<div class="section_contents"> 
+	<table style="width:70%" >
+          <tr>
+            <td><input type="text" name="cname" id="cname1_s1" size="40" placeholder="Course, e.g. cs61a" /></td>
+  	    <td><label for "cunit1_s1" >Unit</label></td>
+	    <td><input type="text" name="cunit" id="cunit1_s1" value="4" size="10" /></td>
+  	    <td><label for "cgrade1_s1" >Grade</label></td>
+  	    <td>
+		<select name="cgrade" id="cgrade1_s1">
+  		<option value="">-</option>
+  		<option value="4.0">A</option>
+  		<option value="3.7">A-</option>
+  		<option value="3.3">B+</option>
+  		<option value="3.0">B</option>
+  		<option value="2.7">B-</option>
+  		<option value="2.3">C+</option>
+  		<option value="2.0">C</option>
+  		<option value="1.7">C-</option>
+  		<option value="1.3">D+</option>
+  		<option value="1.0">D</option>
+  		<option value="0.7">D-</option>
+  		<option value="0.0">F</option>
+		</select>		  
+            </td>		    
+          </tr>
+          <tr>
+            <td><input type="text" name="cname" id="cname2_s1" size="40" placeholder="Course, e.g. cs61a" /></td>
+  	    <td><label for "cunit2_s1" >Unit</label></td>
+	    <td><input type="text" name="cunit" id="cunit2_s1" value="4" size="10" /></td>
+  	    <td><label for "cgrade2_s1" >Grade</label></td>
+  	    <td>
+		<select name="cgrade" id="cgrade2_s1">
+  		<option value="">-</option>
+  		<option value="4.0">A</option>
+  		<option value="3.7">A-</option>
+  		<option value="3.3">B+</option>
+  		<option value="3.0">B</option>
+  		<option value="2.7">B-</option>
+  		<option value="2.3">C+</option>
+  		<option value="2.0">C</option>
+  		<option value="1.7">C-</option>
+  		<option value="1.3">D+</option>
+  		<option value="1.0">D</option>
+  		<option value="0.7">D-</option>
+  		<option value="0.0">F</option>
+		</select>		  
+            </td>		    
+          </tr>
+          <tr>
+            <td><input type="text" name="cname" id="cname3_s1" size="40" placeholder="Course, e.g. cs61a" /></td>
+  	    <td><label for "cunit3_s1" >Unit</label></td>
+	    <td><input type="text" name="cunit" id="cunit3_s1" value="4" size="10" /></td>
+  	    <td><label for "cgrade3_s1" >Grade</label></td>
+  	    <td>
+		<select name="cgrade" id="cgrade3_s1">
+  		<option value="">-</option>
+  		<option value="4.0">A</option>
+  		<option value="3.7">A-</option>
+  		<option value="3.3">B+</option>
+  		<option value="3.0">B</option>
+  		<option value="2.7">B-</option>
+  		<option value="2.3">C+</option>
+  		<option value="2.0">C</option>
+  		<option value="1.7">C-</option>
+  		<option value="1.3">D+</option>
+  		<option value="1.0">D</option>
+  		<option value="0.7">D-</option>
+  		<option value="0.0">F</option>
+		</select>		  
+            </td>		    
+          </tr>
+          <tr>
+            <td><input type="text" name="cname" id="cname4_s1" size="40" placeholder="Course, e.g. cs61a" /></td>
+  	    <td><label for "cunit4_s1" >Unit</label></td>
+	    <td><input type="text" name="cunit" id="cunit4_s1" value="4" size="10" /></td>
+  	    <td><label for "cgrade4_s1" >Grade</label></td>
+  	    <td>
+		<select name="cgrade" id="cgrade4_s1">
+  		<option value="">-</option>
+  		<option value="4.0">A</option>
+  		<option value="3.7">A-</option>
+  		<option value="3.3">B+</option>
+  		<option value="3.0">B</option>
+  		<option value="2.7">B-</option>
+  		<option value="2.3">C+</option>
+  		<option value="2.0">C</option>
+  		<option value="1.7">C-</option>
+  		<option value="1.3">D+</option>
+  		<option value="1.0">D</option>
+  		<option value="0.7">D-</option>
+  		<option value="0.0">F</option>
+		</select>		  
+            </td>		    
+          </tr>
+        </table>
+        <br> 
+        </div>
+
+	</div> 
+	</div> 
+	<div id="footer" class = "section_footer" >		
+        <div id="cunit_total">Total Units : </div>		
+        <div id="cgpa">Cumulative GPA : </div>		
+        <BR>       		
+        <input type="hidden" name="smstr_count" id="smstr_count" value="1"  /></td>
+        <input class="button" type="submit" value = "Calculate" name="cgrade" onclick="calculate()" />
+        <button class="button" text="Add New Semester" onclick="addNewSemester()" >Add New Semester</button>
+	</div>		
+		
+        </div>
+
+	<!-- </form> -->
+</body>
+</html>
+  

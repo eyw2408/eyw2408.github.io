@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		*{
+			background-color: transparent;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		table{
+			width:100%;
+			height:15em;
+		}
+
+		input {
+			border: 1px solid black;
+		}
+
+		#header{
+			height:2em;
+		}
+		.conversions{
+			display: inline-block;
+		}
+	</style>
+	<table>
+		<tr id = "header">
+			<td>
+				Type a value in any of the fields to convert between length measurements. 
+			</td>
+			
+		</tr>
+		<tr>
+			<td>
+				<div class="conversions">
+				    <label><strong>Inches</strong><div></div></label>
+				    <input id="inputInches" type="number" placeholder="Inches" oninput="lengthConverter(this.id,this.value)" onchange="lengthConverter(this.id,this.value)">
+			  	</div>
+			  	<div class="conversions">
+				    <label><strong>Feet</strong><div></div></label>
+				    <input id="inputFeet" type="number" placeholder="Feet" oninput="lengthConverter(this.id,this.value)" onchange="lengthConverter(this.id,this.value)">
+			  	</div>
+			  	<div class="conversions">
+				    <label><strong>Centimeters</strong><div></div></label>
+				    <input id="inputCentimeters" type="number" placeholder="Centimeters" oninput="lengthConverter(this.id,this.value)" onchange="lengthConverter(this.id,this.value)">
+			  	</div>
+			 	<div class="conversions">
+				    <label><strong>Yards</strong><div></div></label>
+				    <input id="inputYards" type="number" placeholder="Yards" oninput="lengthConverter(this.id,this.value)" onchange="lengthConverter(this.id,this.value)">
+			  	</div>
+			  	<div class="conversions">
+				    <label><strong>Meters</strong><div></div></label>
+				    <input id="inputMeters" type="number" placeholder="Meters" oninput="lengthConverter(this.id,this.value)" onchange="lengthConverter(this.id,this.value)">
+			  	</div>
+			  	<div class="conversions">
+				    <label><strong>Miles</strong><div></div></label>
+				    <input id="inputMiles" type="number" placeholder="Miles" oninput="lengthConverter(this.id,this.value)" onchange="lengthConverter(this.id,this.value)">
+			  	</div>
+			</td>
+		</tr>
+	</table>
+	<script>
+		function lengthConverter(source,valNum) {
+		  valNum = parseFloat(valNum);
+		  var inputInches = document.getElementById("inputInches");
+		  var inputFeet = document.getElementById("inputFeet");
+		  var inputCentimeters = document.getElementById("inputCentimeters");
+		  var inputYards = document.getElementById("inputYards");
+		  var inputMeters = document.getElementById("inputMeters");
+		  var inputMiles = document.getElementById("inputMiles");
+		  if (source=="inputInches") {
+		    inputFeet.value=(valNum/12).toFixed(4);
+		    inputCentimeters.value=(valNum*2.54).toFixed(4);
+		    inputYards.value=(valNum*0.0277778).toFixed(4);
+		    inputMeters.value=(valNum*0.0254).toFixed(4);
+		    inputMiles.value=(valNum*1.57828*Math.pow(10,-5)).toFixed(15);
+		  }
+		  if (source=="inputFeet") {
+		    inputInches.value=(valNum*12).toFixed(4);
+		    inputCentimeters.value=(valNum*30.48).toFixed(4);
+		    inputYards.value=(valNum*0.333333).toFixed(4);
+		    inputMeters.value=(valNum*0.3048).toFixed(4);
+		    inputMiles.value=(valNum*0.000189394).toFixed(15);
+		  }
+		  if (source=="inputCentimeters") {
+		    inputInches.value=(valNum*0.393701).toFixed(4);
+		    inputFeet.value=(valNum*0.0328084).toFixed(4);
+		    inputYards.value=(valNum*0.0109361).toFixed(4);
+		    inputMeters.value=(valNum*0.01).toFixed(4);
+		    inputMiles.value=(valNum*6.21371*Math.pow(10,-6)).toFixed(15);
+		  }
+		  if (source=="inputYards") {
+		    inputInches.value=(valNum*36).toFixed(4);
+		    inputFeet.value=(valNum*3).toFixed(4);
+		    inputCentimeters.value=(valNum*91.44).toFixed(4);
+		    inputMeters.value=(valNum*0.9144).toFixed(4);
+		    inputMiles.value=(valNum*0.000568182).toFixed(15);
+		  }
+		  if (source=="inputMeters") {
+		    inputInches.value=(valNum*39.3701).toFixed(4);
+		    inputFeet.value=(valNum*3.28084).toFixed(4);
+		    inputCentimeters.value=(valNum*100).toFixed(4);
+		    inputYards.value=(valNum*1.09361).toFixed(4);
+		    inputMiles.value=(valNum*0.000621371).toFixed(15);
+		  }
+		  if (source=="inputMiles") {
+		    inputInches.value=(valNum*63360).toFixed(4);
+		    inputFeet.value=(valNum*5280).toFixed(4);
+		    inputCentimeters.value=(valNum*160934).toFixed(4);
+		    inputYards.value=(valNum*1760).toFixed(4);
+		    inputMeters.value=(valNum*1609.34).toFixed(4);
+		  }
+		}
+	</script>
+
+</html>

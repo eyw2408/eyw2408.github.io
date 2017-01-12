@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		*{
+			background-color: transparent;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		table{
+			width:100%;
+			height:15em;
+		}
+
+		input {
+			border: 1px solid black;
+		}
+
+		#header{
+			height:2em;
+		}
+		.conversions{
+			display: inline-block;
+		}
+	</style>
+	<table>
+		<tr id = "header">
+			<td>
+				Type a value in any of the fields to convert between weight measurements. 
+			</td>
+			
+		</tr>
+		<tr>
+			<td>
+				<div class="conversions">
+				    <label><strong>Pounds</strong><div></div></label>
+				    <input id="inputPounds" type="number" placeholder="Pounds" oninput="weightConverter(this.id,this.value)" onchange="weightConverter(this.id,this.value)">
+			  	</div>
+			  	<div class="conversions">
+				    <label><strong>Kilograms</strong><div></div></label>
+				    <input id="inputKilograms" type="number" placeholder="Kilograms" oninput="weightConverter(this.id,this.value)" onchange="weightConverter(this.id,this.value)">
+			  	</div>
+			  	<div class="conversions">
+				    <label><strong>Ounces</strong><div></div></label>
+				    <input id="inputOunces" type="number" placeholder="Ounces" oninput="weightConverter(this.id,this.value)" onchange="weightConverter(this.id,this.value)">
+			  	</div>
+			 	<div class="conversions">
+				    <label><strong>Grams</strong><div></div></label>
+				    <input id="inputGrams" type="number" placeholder="Grams" oninput="weightConverter(this.id,this.value)" onchange="weightConverter(this.id,this.value)">
+			  	</div>
+			</td>
+		</tr>
+	</table>
+	<script>
+		function weightConverter(source,valNum) {
+		  valNum = parseFloat(valNum);
+		  var inputPounds = document.getElementById("inputPounds");
+		  var inputKilograms = document.getElementById("inputKilograms");
+		  var inputOunces = document.getElementById("inputOunces");
+		  var inputGrams = document.getElementById("inputGrams");
+		  if (source=="inputPounds") {
+		    inputKilograms.value=(valNum/2.2046).toFixed(2);
+		    inputOunces.value=(valNum*16).toFixed(2);
+		    inputGrams.value=(valNum/0.0022046).toFixed(2);
+		  }
+		  if (source=="inputKilograms") {
+		    inputPounds.value=(valNum*2.2046).toFixed(2);
+		    inputOunces.value=(valNum*35.274).toFixed(2);
+		    inputGrams.value=(valNum*1000).toFixed(2);
+		  }
+		  if (source=="inputOunces") {
+		    inputPounds.value=(valNum*0.062500).toFixed(4);
+		    inputKilograms.value=(valNum/35.274).toFixed(4);
+		    inputGrams.value=(valNum/0.035274).toFixed(4);
+		  }
+		  if (source=="inputGrams") {
+		    inputPounds.value=(valNum*0.0022046).toFixed(4);
+		    inputKilograms.value=(valNum/1000).toFixed(4);
+		    inputOunces.value=(valNum*0.035274).toFixed(4);
+		  }
+
+		}
+	</script>
+
+</html>

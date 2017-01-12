@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		*{
+			background-color: transparent;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		table{
+			width:100%;
+			height:20em;
+		
+		}
+		td a{
+			text-decoration: none;
+			font-size: 1em;
+		}
+		
+		#header{
+			height:2em;
+		}
+
+		#header :first-child{
+			background-color: #4CAF50;
+		}
+
+		.link-selected{
+			text-decoration: none;
+			font-size: 1em;
+			color: pink;
+			background-color: #4CAF50;
+		}
+		.link-unselected{
+			text-decoration: none;
+			font-size: 1em;
+			color: white;		
+			background-color: #4CAF50;
+		}
+	</style>
+	<table>
+		<tr id = "header">
+			<td>			 
+				<a id = "weight" class = "link-unselected" href = "weight.html" onclick = "changeClass(this.id)" target="targetFrame3">Weight&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+				<a id = "length" class = "link-unselected" href = "length.html" onclick = "changeClass(this.id)" target="targetFrame3">Length&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                <a id = "temperature" class = "link-unselected" href = "temperature.html" onclick = "changeClass(this.id)" target="targetFrame3">Temperature&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                <a id = "volume" class = "link-unselected" href = "volume.html" onclick = "changeClass(this.id)" target="targetFrame3">Volume&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                <a id = "volume" class = "link-unselected" href = "volume.html" onclick = "changeClass(this.id)" target="targetFrame3">Time&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+		</td>	
+
+				
+		</tr>
+		<tr>
+			<td>
+				<iframe height="95%" width="100%" src="weight.html" name="targetFrame3"></iframe>
+			</td>
+		</tr>
+	</table>
+	<script>
+        function changeClass(source) {
+            var weightLink = document.getElementById("weight");
+            var lengthLink = document.getElementById("length");
+            var temperatureLink = document.getElementById("temperature");
+
+            if(source == "weight") {
+                weightLink.className = "link-selected";
+                lengthLink.className = "link-unselected";
+                temperatureLink.className = "link-unselected";
+            } else if (source == "length") {
+                lengthLink.className = "link-selected";
+                weightLink.className = "link-unselected";
+                temperatureLink.className = "link-unselected";
+            } else {
+                temperatureLink.className = "link-selected";
+                weightLink.className = "link-unselected";
+                lengthLink.className = "link-unselected";
+            }
+        }
+    </script>
+</html>
