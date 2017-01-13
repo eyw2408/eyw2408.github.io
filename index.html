@@ -18,6 +18,10 @@
                 <a href="converter/converter.html" id = "projects2" class = "link-unselected" onclick = "changeClass(this.id)" target="targetFrame">Converter</a>
 
                 <a href="calculator/calculator.html" id = "projects3" class = "link-unselected" onclick = "changeClass(this.id)" target="targetFrame">Calculator</a>
+
+                <a href="bearmaps/bearmaps.html" id = "projects4" class = "link-unselected" onclick = "changeClass(this.id)" target="targetFrame">BearMaps</a>
+
+                <a href="cpu/cpu.html" id = "projects5" class = "link-unselected" onclick = "changeClass(this.id)" target="targetFrame">5-Stage-CPU</a>
             </div>
         </div>
 		
@@ -25,7 +29,7 @@
 		<a href="contact.html" id = "aboutMe" class = "link-unselected" onclick = "changeClass(this.id)" target="targetFrame"><strong>&nbsp&nbspCONTACT INFO</strong></a>
     </nav>
     <article id = "content1">
-    	<iframe height="95%" width="95%" src="intro.html" name="targetFrame"></iframe>
+    	<iframe height="100%" width="95%" src="intro.html" name="targetFrame"></iframe>
     </article>
 
     </body>
@@ -37,6 +41,8 @@
             var project1Link = document.getElementById("projects1");
             var project2Link = document.getElementById("projects2");
             var project3Link = document.getElementById("projects3");
+            var project4Link = document.getElementById("projects4");
+            var project5Link = document.getElementById("projects5");
             var aboutMeLink = document.getElementById("aboutMe");
 
             if(source == "intro") {
@@ -45,6 +51,8 @@
                 project1Link.className = "link-unselected";
                 project2Link.className = "link-unselected";
                 project3Link.className = "link-unselected";
+                project4Link.className = "link-unselected";
+                project5Link.className = "link-unselected";
                 aboutMeLink.className = "link-unselected";
             } else if (source == "projects1") {
                 introLink.className = "link-unselected";
@@ -52,6 +60,8 @@
                 project1Link.className = "link-selected";
                 project2Link.className = "link-unselected";
                 project3Link.className = "link-unselected";
+                project4Link.className = "link-unselected";
+                project5Link.className = "link-unselected";
                 aboutMeLink.className = "link-unselected";
             } else if (source == "projects2"){
                 introLink.className = "link-unselected";
@@ -59,6 +69,8 @@
                 project1Link.className = "link-unselected";
                 project2Link.className = "link-selected";
                 project3Link.className = "link-unselected";
+                project4Link.className = "link-unselected";
+                project5Link.className = "link-unselected";
                 aboutMeLink.className = "link-unselected";
             } else if (source == "projects3") {
                 introLink.className = "link-unselected";
@@ -66,13 +78,37 @@
                 project1Link.className = "link-unselected";
                 project2Link.className = "link-unselected";
                 project3Link.className = "link-selected";
+                project4Link.className = "link-unselected";
+                project5Link.className = "link-unselected";
                 aboutMeLink.className = "link-unselected";
+            } else if (source == "projects4") {
+                introLink.className = "link-unselected";
+                projects.className = "link-selected";
+                project1Link.className = "link-unselected";
+                project2Link.className = "link-unselected";
+                project3Link.className = "link-unselected";
+                project4Link.className = "link-selected";
+                project5Link.className = "link-unselected";
+                aboutMeLink.className = "link-unselected";
+
+            } else if (source == "projects5") {
+                introLink.className = "link-unselected";
+                projects.className = "link-selected";
+                project1Link.className = "link-unselected";
+                project2Link.className = "link-unselected";
+                project3Link.className = "link-unselected";
+                project4Link.className = "link-unselected";
+                project5Link.className = "link-selected";
+                aboutMeLink.className = "link-unselected";
+
             } else {
                 introLink.className = "link-unselected";
                 projects.className = "link-unselected";
                 project1Link.className = "link-unselected";
                 project2Link.className = "link-unselected";
                 project3Link.className = "link-unselected";
+                project4Link.className = "link-unselected";
+                project5Link.className = "link-unselected";
                 aboutMeLink.className = "link-selected";
             }
         }
@@ -96,7 +132,7 @@
 
         // Close the dropdown if the user clicks outside of it
         window.onclick = function(event) {
-          if (!event.target.matches('#projects') && (!event.target.matches('#projects1') && !event.target.matches('#projects2') && !event.target.matches('#projects3'))) {
+          if (!event.target.matches('#projects') && (!event.target.matches('#projects1') && !event.target.matches('#projects2') && !event.target.matches('#projects3') && !event.target.matches('#projects4') && !event.target.matches('#projects5'))) {
 
             var dropdowns = document.getElementsByClassName("dropdown-content");
             var i;
