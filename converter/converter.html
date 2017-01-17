@@ -59,19 +59,25 @@
             var weightLink = document.getElementById("weight");
             var lengthLink = document.getElementById("length");
             var temperatureLink = document.getElementById("temperature");
+            var volume = document.getElementById("volume");
+            var time = document.getElementById("time");
 
+            weightLink.className = "link-selected";
+            lengthLink.className = "link-unselected";
+            temperatureLink.className = "link-unselected";
+            volume.className = "link-unselected";
+            time.className = "link-unselected";
+		
             if(source == "weight") {
                 weightLink.className = "link-selected";
-                lengthLink.className = "link-unselected";
-                temperatureLink.className = "link-unselected";
             } else if (source == "length") {
                 lengthLink.className = "link-selected";
-                weightLink.className = "link-unselected";
-                temperatureLink.className = "link-unselected";
-            } else {
+            } else if (source == "length") {
                 temperatureLink.className = "link-selected";
-                weightLink.className = "link-unselected";
-                lengthLink.className = "link-unselected";
+            } else if (source == "length") {
+                volume.className = "link-selected";
+            } else if (source == "length") {
+                time.className = "link-selected";
             }
         }
     </script>
