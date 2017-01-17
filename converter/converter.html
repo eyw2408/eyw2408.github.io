@@ -62,7 +62,7 @@
             var volume = document.getElementById("volume");
             var time = document.getElementById("time");
 
-            weightLink.className = "link-selected";
+            weightLink.className = "link-unselected";
             lengthLink.className = "link-unselected";
             temperatureLink.className = "link-unselected";
             volume.className = "link-unselected";
@@ -72,11 +72,11 @@
                 weightLink.className = "link-selected";
             } else if (source == "length") {
                 lengthLink.className = "link-selected";
-            } else if (source == "length") {
+            } else if (source == "temperature") {
                 temperatureLink.className = "link-selected";
-            } else if (source == "length") {
+            } else if (source == "volume") {
                 volume.className = "link-selected";
-            } else if (source == "length") {
+            } else if (source == "time") {
                 time.className = "link-selected";
             }
         }
