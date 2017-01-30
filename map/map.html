@@ -109,7 +109,12 @@
 			var infowindow;
 			var shops = [];
 			var mylocation;
+			var lantitude;
+			var longitude;
 				function initMap() {
+				alert(lantitude);
+				alert(longitude);
+
 					// getLocation();
 					alert("mylocation = " + mylocation);
 					//mylocation = new google.maps.LatLng(37.3812799,-122.043991);
@@ -294,10 +299,10 @@
 			}				
 			
 			function showPosition(position) {
-				alert(position.coords.latitude);
-				alert(position.coords.longitude);
-				mylocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-				alert("mylocation = " + mylocation);
+				lantitude = position.coords.latitude;
+				longitude = position.coords.longitude
+				alert(lantitude);
+				alert(longitude);
 			}				
 			
 			
