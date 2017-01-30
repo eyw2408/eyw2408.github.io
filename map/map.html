@@ -192,6 +192,11 @@
 				}
 
 				function calculateAndDisplayRoute(directionsService, directionsDisplay, travelCase) {
+					
+					if(startMarker) {
+						startMarker.setMap(null);
+					}
+					
 					//var start = "Sunnyvale CS 94086";
 					var end = "282 2nd Street 4th floor, San Francisco, CA 94105";
 					var travelType = document.getElementById('travel-type').value;
