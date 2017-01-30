@@ -107,10 +107,12 @@
 			// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 			var map;
 			var infowindow;
+			var startMarker;
 			var shops = [];
 			var mylocation;
 			var lantitude;
 			var longitude;
+			
 				function initMap() {
 				//alert(lantitude);
 				//alert(longitude);
@@ -126,10 +128,10 @@
 						center: mylocation ,
 						zoom: 7
 					});
-					/*var marker = new google.maps.Marker({
+					startMarker = new google.maps.Marker({
 						position: mylocation,
 						map: map
-					});*/
+					});
 					directionsDisplay.setMap(map);
 					directionsDisplay.setPanel(document.getElementById('right-panel'));
 
