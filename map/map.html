@@ -204,6 +204,7 @@
 			
 			
 			function getLocation() {
+				alert("000");
     				if (navigator.geolocation) {
         				navigator.geolocation.getCurrentPosition(showPosition);
     				} else { 
@@ -213,6 +214,7 @@
 			
 
 			function showPosition(position) {
+				alert("111");
 				alert(position.coords.latitude);
 				alert(position.coords.longitude);
 			}				
