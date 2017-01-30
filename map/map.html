@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Place searches</title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		<style>
+			/* Always set the map height explicitly to define the size of the div
+			* element that contains the map. */
+			#map {
+				height: 30%;
+			}
+			/* Optional: Makes the sample page fill the window. */
+			html, body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			#right-panel {
+				font-family: 'Roboto','sans-serif';
+				line-height: 30px;
+				padding-left: 10px;
+			}
+			#right-panel select, #right-panel input {
+				font-size: 15px;
+			}
+			#right-panel select {
+				width: 100%;
+			}
+			#right-panel i {
+				font-size: 12px;
+			}
+			#right-panel {
+				height: 100%;
+				float: right;
+				width: 390px;
+				overflow: auto;
+			}
+			#map {
+				margin-left: 5em;
+				height:80%;
+			}
+			#left-panel {
+				position: absolute;
+				height:100%;
+				width:5em;
+			}
+			#result {
+				margin-left: 5em;
+			}
+			@media print {
+				#map {
+					height: 500px;
+					margin: 0;
+				}
+				#right-panel {
+					float: none;
+					width: auto;
+				}
+			}
+		</style>
+		<script>
+			// This example requires the Places library. Include the libraries=places
+			// parameter when you first load the API. For example:
+			// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+			var map;
+			var infowindow;
+			var shops = [];
+			var mylocation;
+				function initMap() {
+					mylocation = new google.maps.LatLng(37.3812799,-122.043991);
+					var directionsDisplay = new google.maps.DirectionsRenderer;
+					var directionsService = new google.maps.DirectionsService;
+					map = new google.maps.Map(document.getElementById('map'), {
+						center: mylocation ,
+						zoom: 15
+					});
+					/*var marker = new google.maps.Marker({
+						position: mylocation,
+						map: map
+					});*/
+					directionsDisplay.setMap(map);
+					directionsDisplay.setPanel(document.getElementById('right-panel'));
+					
+					function onClickHandler() {
+						calculateAndDisplayRoute(directionsService, directionsDisplay);
+					};
+					document.getElementById('Go').addEventListener('click', onClickHandler);
+					
+					var request = {
+						location: mylocation ,
+						radius: '500',
+						query: 'coffee shop'
+					};
+					service = new google.maps.places.PlacesService(map);
+					service.textSearch(request, callback);
+					// map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+					//calculateAndDisplayRoute(directionsService, directionsDisplay);
+				}
+				function callback(results, status) {
+					if (status === google.maps.places.PlacesServiceStatus.OK) {
+						for (var i = 0; i < results.length; i++) {
+							var shopName = results[i].name;
+							var address = results[i].formatted_address;
+							//	alert(results[i].name + " " + results[i].formatted_address);
+							var shop = "<BR>" + results[i].name + "</BR>&nbsp&nbsp&nbsp&nbsp" + results[i].formatted_address;
+							
+							var result = document.getElementById('shops');
+							var newOption = document.createElement("option");
+							newOption.text = shopName +""+ address;
+							newOption.value = address;
+							result.add(newOption);
+							//result.innerHTML += "<option value = "address" id='single'> "+shopName + " </select> ";
+							//result.innerHTML+=shop + "<br>"
+							// createMarker(results[i]);
+						}
+					}
+				}
+				function createMarker(place) {
+					var placeLoc = place.geometry.location;
+					var marker = new google.maps.Marker({
+						map: map,
+						position: place.geometry.location
+					});
+					google.maps.event.addListener(marker, 'click', function() {
+						infowindow.setContent(place.name);
+						infowindow.open(map, this);
+					});
+				}
+				function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+					//var start = "Sunnyvale CS 94086";
+					var end = "282 2nd Street 4th floor, San Francisco, CA 94105";
+					var travelType = document.getElementById('travel-type').value;
+					
+
+					var waypts = [];
+					var stopLocation = document.getElementById('shops').value;
+			        
+			        if(stopLocation != "n/a") {
+						waypts.push({
+			            	location: stopLocation,
+			            	stopover: true
+			            });		
+			        }
+			        	
+
+					directionsService.route({
+						origin: mylocation,
+						destination: end,
+						waypoints: waypts,
+			          	optimizeWaypoints: true,
+						travelMode: google.maps.TravelMode[travelType]
+					}, function(response, status) {
+						if (status === 'OK') {
+							/*var result = document.getElementById('result');
+							result.innerHTML= "";
+							for (var i =0; i < response.routes[0].legs[0].steps.length; i++){
+								result.innerHTML+=response.routes[0].legs[0].steps[i].instructions+"<br>"
+							}*/
+							directionsDisplay.setDirections(response);
+						} else {
+							window.alert('Directions request failed due to ' + status);
+						}
+					});
+				}
+		</script>
+	</head>
+	<body>
+		<div id="right-panel"></div>
+		<div id="left-panel">
+			<b>Mode of Travel: </b>
+				<select id="travel-type">
+					<option value="WALKING">Walking</option>
+					<option value="BICYCLING">Bicycling</option>
+					<option value="TRANSIT">Transit</option>
+				</select>
+			<b>Coffee Shops Near Me: </b>
+				<select id = "shops">
+					<option value = "n/a">-------------</option>
+				</select>
+			<button id = "Go">GO<button>
+		</div>
+		<div id="map"></div>
+		<div id="result"></div>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhmQhmm2y8RjgvdL356Shbljh0Qt6DWbw&libraries=places&callback=initMap" async defer></script>
+	</body>
+</html>
