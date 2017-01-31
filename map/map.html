@@ -110,7 +110,7 @@
 			var startMarker;
 			var shops = [];
 			var mylocation;
-			
+			var clicktime = "282 2nd Street 4th floor, San Francisco, CA 94105";
 				function initMap() {
 				//alert(lantitude);
 				//alert(longitude);
@@ -142,7 +142,7 @@
             //});
 
   	    startMarker = new google.maps.Marker({
-		        label : "Your location",
+		    	title : "Your location",
 			position: mylocation,
 			map: map
 	    });
@@ -160,7 +160,23 @@
         });					
 					
 					
-					
+        geocoder = new google.maps.Geocoder();
+        if (geocoder) {
+           	geocoder.geocode({
+			'address': clicktime
+    			}, function(results, status) {
+      				if (status == google.maps.GeocoderStatus.OK) {
+        				if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+						var marker = new google.maps.Marker({
+            							position: results[0].geometry.location,
+            							map: map,
+            							title: clicktime});
+
+		       			}
+				}
+			}			
+    		});
+  	}					
 					
 					
 					
