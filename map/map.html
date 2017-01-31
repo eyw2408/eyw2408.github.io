@@ -110,8 +110,6 @@
 			var startMarker;
 			var shops = [];
 			var mylocation;
-			var lantitude = 50;
-			var longitude = 120;
 			
 				function initMap() {
 				//alert(lantitude);
@@ -134,13 +132,14 @@
 					
  navigator.geolocation.getCurrentPosition(function(position) {
             mylocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            var infowindow = new google.maps.InfoWindow({
-                map: map,
-                content:
-                    '<h1>Location pinned from HTML5 Geolocation!</h1>' +
-                    '<h2>Latitude: ' + position.coords.latitude + '</h2>' +
-                    '<h2>Longitude: ' + position.coords.longitude + '</h2>'
-            });
+            
+	    //var infowindow = new google.maps.InfoWindow({
+            //    map: map,
+            //    content:
+            //        '<h1>Location pinned from HTML5 Geolocation!</h1>' +
+            //        '<h2>Latitude: ' + position.coords.latitude + '</h2>' +
+            //        '<h2>Longitude: ' + position.coords.longitude + '</h2>'
+            //});
 
   	    startMarker = new google.maps.Marker({
 			position: mylocation,
