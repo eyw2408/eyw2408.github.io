@@ -301,6 +301,7 @@
 			function getLocation() {
 				alert("xyz");
     				if (navigator.geolocation) {
+     				        alert("xyzzz111");
         				navigator.geolocation.getCurrentPosition(showPosition);
     				} else { 
 					alert("Error");
@@ -309,6 +310,7 @@
 			}				
 			
 			function showPosition(position) {
+ 				alert("xyzzz2222");
 				lantitude = position.coords.latitude;
 				longitude = position.coords.longitude;
 				alert("lantitude = " + lantitude);
