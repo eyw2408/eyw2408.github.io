@@ -329,24 +329,6 @@
 			
 			
 			
-			function getLocation() {
-				if (navigator.geolocation) {
-        				navigator.geolocation.getCurrentPosition(showPosition);
-    				} else { 
-					alert("Error");
-    				}			
-			}				
-			
-			function showPosition(position) {
-				lantitude = position.coords.latitude;
-				longitude = position.coords.longitude;
-				//alert("lantitude = " + lantitude);
-				//alert("longitude = " + longitude);
-				map.setCenter(new google.maps.LatLng(lantitude, longitude));
-			}				
-			
-			
-			
 			
 		</script>
 		
@@ -379,10 +361,6 @@
 		</div>
 		
 		<div id="result"></div>
-<!--		<script type="text/javascript">
-                  getLocation();
- 	        </script>	
--->
 
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhmQhmm2y8RjgvdL356Shbljh0Qt6DWbw&libraries=places&callback=initMap" async defer></script> 
 	</body>
