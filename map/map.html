@@ -142,9 +142,10 @@
             //});
 
   	    startMarker = new google.maps.Marker({
-		    	label : "Your location",
+		    	label : "A",
 			position: mylocation,
 			map: map
+		    	title : "Your location",
 	    });
 	 
 	 
@@ -170,7 +171,8 @@
 						var marker = new google.maps.Marker({
             							position: results[0].geometry.location,
             							map: map,
-            							label: "ClickTime.com"});
+            							label: "B",
+            							title: "ClickTime.com"});
 
 		       			}
 				}
