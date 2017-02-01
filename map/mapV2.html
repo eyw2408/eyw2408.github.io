@@ -355,10 +355,19 @@
 				    		}, function(results, status) {
 						if (status == google.maps.GeocoderStatus.OK) {
 				        			if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
-									var marker = new google.maps.Marker({
-				         						position: results[0].geometry.location,
-				         						map: map,
+									
+									if(startMarker) {
+										startMarker.setMap(null);
+									}
+									
+						  	    		startMarker = new google.maps.Marker({
+						    				label : "A",
+				         					position: results[0].geometry.location,
+										map: map,
+						    				title : "starterLocationn"
 									});
+					  				mylocation = new google.maps.LatLng(results[0].geometry.location.coords.latitude, results[0].geometry.location.coords.longitude);
+									
 					       			}
 							}
 						}
