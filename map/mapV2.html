@@ -187,6 +187,9 @@
 					directionsDisplay.setPanel(document.getElementById('right-panel'));
 					function onClickDoneHandler() {
 						var inputAddress = document.getElementById("startLoc");
+						alert(inputAddress);
+						alert(inputAddress.value);
+						resetStarter( );
 						/*geocoder = new google.maps.Geocoder();
 				        if (geocoder) {
 				           	geocoder.geocode({
