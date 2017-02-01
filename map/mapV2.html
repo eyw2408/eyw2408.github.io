@@ -243,7 +243,8 @@
 						}
 					}
 				}
-				function createMarker(place) {
+				
+			        function createMarker(place) {
 					var placeLoc = place.geometry.location;
 					var marker = new google.maps.Marker({
 						map: map,
@@ -255,6 +256,7 @@
 					});
 
 				}
+			
 				function calculateAndDisplayRoute(directionsService, directionsDisplay, travelCase) {
 					
 					if(startMarker) {
@@ -357,7 +359,9 @@
 				}*/
 			
 			
-			
+			function resetStarter() {
+				alert("123");	
+			}
 			
 		</script>
 		
@@ -384,7 +388,8 @@
 			<table id = "routeInfo">
 				<tr id = "startLocationRow">
 					<td id = "startLocation">
-						Start Location: <input style = "width: 25em" id="startLoc" placeholder="Choose starting address or click Current Location"> <button id = "Done">DONE</button>
+						Start Location: <input style = "width: 25em" id="startLoc" placeholder="Choose starting address or click Current Location"> 
+						<button id = "Done" onclick="resetStarter()">DONE</button>
 					</td>
 					<!--<td id = "startLocationVal">
 					</td>-->
