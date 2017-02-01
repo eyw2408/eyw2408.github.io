@@ -151,16 +151,9 @@
 							map: map,
 						    	title : "Your location"
 					    });
-				 
-				 
-		            	map.setCenter(mylocation);
-		     	    	var request = {
-								location: mylocation ,
-								radius: '500',
-								query: 'coffee shop'
-							};
-				    		service = new google.maps.places.PlacesService(map);
-				    		service.textSearch(request, callback);
+	
+			            	map.setCenter(mylocation);
+					populateNearByShops( );
 			        });					
 								
 			        geocoder = new google.maps.Geocoder();
@@ -344,7 +337,17 @@
 				function closeNav() {
 				    document.getElementById("mySidenav").style.width = "0%";
 				}*/
-			
+
+			function populateNearByShops( ) {				
+		     	    	var request = {
+						location: mylocation ,
+						radius: '500',
+						query: 'coffee shop'
+ 					      };
+		    		var service = new google.maps.places.PlacesService(map);
+		    		var service.textSearch(request, callback);
+			}				
+
 			
 			function resetStarter(starterLocation) {
 				alert(starterLocation);
@@ -367,7 +370,7 @@
 						    				title : starterLocation
 									});
 					  				mylocation = new google.maps.LatLng(results[0].geometry.location.coords.latitude, results[0].geometry.location.coords.longitude);
-									
+									populateNearByShops( );
 					       			}
 							}
 						}
