@@ -211,7 +211,8 @@
 							var shopName = results[i].name;
 							var address = results[i].formatted_address;
 							//	alert(results[i].name + " " + results[i].formatted_address);
-							var shop = "<BR>" + results[i].name + "</BR>&nbsp&nbsp&nbsp&nbsp" + results[i].formatted_address;
+							//var shop = "<BR>" + results[i].name + "</BR>&nbsp&nbsp&nbsp&nbsp" + results[i].formatted_address;
+							var shop = results[i].name + " - " + results[i].formatted_address;
 							
 							var result = document.getElementById('shops');
 							var newOption = document.createElement("option");
