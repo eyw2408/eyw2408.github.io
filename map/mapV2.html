@@ -368,7 +368,10 @@
 										map: map,
 						    				title : starterLocation
 									});
-					  				mylocation = new google.maps.LatLng(results[0].geometry.location.coords.latitude, results[0].geometry.location.coords.longitude);
+//					  				mylocation = new google.maps.LatLng(results[0].geometry.location.coords.latitude, results[0].geometry.location.coords.longitude);
+									alert("mylocation 1 " + mylocation); 
+					  				mylocation = results[0].geometry.location;
+									alert("mylocation 2 " + mylocation); 
 									populateNearByShops( );
 					       			}
 							}
