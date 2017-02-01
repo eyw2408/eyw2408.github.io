@@ -205,7 +205,7 @@
 			
 			
 				function callback(results, status) {
-					alert(" shops = " + status);
+					// alert(" shops = " + status);
 					if (status === google.maps.places.PlacesServiceStatus.OK) {
 						for (var i = 0; i < results.length; i++) {
 							var shopName = results[i].name;
@@ -216,7 +216,7 @@
 							
 							var result = document.getElementById('shops');
 							var newOption = document.createElement("option");
-							newOption.text = shopName +""+ address;
+							newOption.text = shopName + " - " + address;
 							newOption.value = address;
 							result.add(newOption);
 							//result.innerHTML += "<option value = "address" id='single'> "+shopName + " </select> ";
@@ -351,7 +351,7 @@
 
 			
 			function resetStarter(starterLocation) {
-				alert(starterLocation);
+				// alert(starterLocation);
 				geocoder = new google.maps.Geocoder();
 				if (geocoder) {
 					geocoder.geocode({
