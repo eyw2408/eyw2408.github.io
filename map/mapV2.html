@@ -188,7 +188,7 @@
 					function onClickDoneHandler() {
 						var inputAddress = document.getElementById("startLoc");
 						if(inputAddress) {
-							resetStarter(inputAddress.value );
+							resetStarter(inputAddress.value);
 						}							
 					};
 					
@@ -347,10 +347,11 @@
 			
 			
 			function resetStarter(starterLocation) {
+				alert(starterLocation);
 				geocoder = new google.maps.Geocoder();
 				if (geocoder) {
 					geocoder.geocode({
-						'address': inputAddress
+						'address': starterLocation;
 				    		}, function(results, status) {
 				      			if (status == google.maps.GeocoderStatus.OK) {
 				        			if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
