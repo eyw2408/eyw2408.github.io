@@ -372,6 +372,7 @@
 									});
 //					  				mylocation = new google.maps.LatLng(results[0].geometry.location.coords.latitude, results[0].geometry.location.coords.longitude);
 					  				mylocation = results[0].geometry.location;
+							            	map.setCenter(mylocation);
 									populateNearByShops( );
 					       			}
 							}
