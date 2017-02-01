@@ -339,13 +339,12 @@
 				}*/
 
 			function populateNearByShops( ) {				
-		     	    	var request = {
-						location: mylocation ,
+		     	    	var request = { location: mylocation ,
 						radius: '500',
 						query: 'coffee shop'
  					      };
 		    		var service = new google.maps.places.PlacesService(map);
-		    		var service.textSearch(request, callback);
+		    		service.textSearch(request, callback);
 			}				
 
 			
