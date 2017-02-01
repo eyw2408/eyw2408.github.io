@@ -347,14 +347,15 @@
 			
 			
 			function resetStarter(starterLocation) {
-//				alert(starterLocation);
-/**				
+				alert(starterLocation);
 				geocoder = new google.maps.Geocoder();
 				if (geocoder) {
 					geocoder.geocode({
 						'address': starterLocation
 				    		}, function(results, status) {
-				      			if (status == google.maps.GeocoderStatus.OK) {
+				alert("123");
+
+						if (status == google.maps.GeocoderStatus.OK) {
 				        			if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
 									var marker = new google.maps.Marker({
 				         						position: results[0].geometry.location,
@@ -365,7 +366,6 @@
 						}
 				    	);
 			  	}
-**/				
 			}
 			
 		</script>
