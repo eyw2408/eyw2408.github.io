@@ -187,25 +187,9 @@
 					directionsDisplay.setPanel(document.getElementById('right-panel'));
 					function onClickDoneHandler() {
 						var inputAddress = document.getElementById("startLoc");
-						alert(inputAddress);
-						alert(inputAddress.value);
-						resetStarter( );
-						/*geocoder = new google.maps.Geocoder();
-				        if (geocoder) {
-				           	geocoder.geocode({
-							'address': inputAddress
-				    			}, function(results, status) {
-				      				if (status == google.maps.GeocoderStatus.OK) {
-				        				if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
-										var marker = new google.maps.Marker({
-				            							position: results[0].geometry.location,
-				            							map: map,
-				            							);
-						       			}
-									}
-								}
-				    		);
-				  		}*/	
+						if(inputAddress) {
+							resetStarter(inputAddress.value );
+						}							
 					};
 					
 					function onClickGoHandler() {
@@ -362,8 +346,23 @@
 				}*/
 			
 			
-			function resetStarter() {
-				alert("123");	
+			function resetStarter(starterLocation) {
+				geocoder = new google.maps.Geocoder();
+				if (geocoder) {
+					geocoder.geocode({
+						'address': inputAddress
+				    		}, function(results, status) {
+				      			if (status == google.maps.GeocoderStatus.OK) {
+				        			if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+									var marker = new google.maps.Marker({
+				         						position: results[0].geometry.location,
+				         						map: map,
+				         				);
+					       			}
+							}
+						}
+				    	);
+			  	}
 			}
 			
 		</script>
