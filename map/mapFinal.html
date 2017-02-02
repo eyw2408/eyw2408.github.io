@@ -318,12 +318,14 @@
 				}
 				
 			function populateNearByShops( ) {				
-	     	    	var request = { location: mylocation ,
+/*
+				var request = { location: mylocation ,
 						radius: '500',
 						query: 'coffee shop'
  					      };
 		    		var service = new google.maps.places.PlacesService(map);
 		    		service.textSearch(request, callback);
+*/				
 			}				
 			
 			function resetStarter(starterLocation) {
@@ -380,7 +382,7 @@
 		</div>
 		<div id="mySidenav" class = "sidenav">
 			<div>
-				<table style = "float:left;" id = "routeInfo">
+				<table style = "float:left;" id = "routeInfo" border=1>
 					<tr id = "startLocationRow">
 						<td id = "startLocation">
 							<b>Start Location: </b> <input style = "width: 28em" id="startLoc" placeholder="Choose start address and click Search"> 
