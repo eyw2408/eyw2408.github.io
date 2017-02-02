@@ -239,7 +239,7 @@ title>Place searches</title>
 			        	transitParagraph.style.visibility = "visible";
 					introParagraph.style.visibility = "hidden";
 					
-					showTransitStep1( );
+					showTransitStep1(false);
 
 			        	directionsService.route({
 							origin: mylocation,
@@ -372,7 +372,7 @@ title>Place searches</title>
 								   "<p style = \"font-size:12px;\" >" + 
 								   "This is the route between the <b><I>coffee shop</b></I>you selected and <b><I>ClickTime Headquarters<b></I>" +
 								   "<br><br>" + 
-								   "Click <b><I><a href=\"javascript:showTransitStep1()\"></b></I> Transit Step 1</a> " + 
+								   "Click <b><I><a href=\"javascript:showTransitStep1(true)\"></b></I> Transit Step 1</a> " + 
 								   "to view the route from your <b><I> starting location</b></I> to the <b><I> coffee shop </b></I>. " +
 								   "</p>" ;
 //				alert(transit2Html);
@@ -381,7 +381,7 @@ title>Place searches</title>
 				calculateAndDisplayRoute(directionsService, directionsDisplay,2);
 			}
 
-			function showTransitStep1()	{
+			function showTransitStep1(boolean caculateRoute)	{
 				alert("123");
 	        	var transit1div = document.getElementById("transitParagraph");
                 var transit1Html = "<h5>Transit Step1</h5>" +
@@ -395,7 +395,9 @@ title>Place searches</title>
 				alert(transit1Html);
 			    transit1div.innerHTML = transit1Html;
 				transitStep = 1;
-				calculateAndDisplayRoute(directionsService, directionsDisplay,2);
+				if(caculateRoute) {
+					calculateAndDisplayRoute(directionsService, directionsDisplay,2);
+				}					
 			}
 			
 		</script>
