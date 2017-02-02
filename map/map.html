@@ -92,6 +92,7 @@ title>Place searches</title>
 			var directionsService;
 			var infowindow;
 			var startMarker;
+			var endMarker;
 			var shops = [];
 			var mylocation;
 			var currentLocation;
@@ -133,7 +134,7 @@ title>Place searches</title>
 			    			}, function(results, status) {
 			      				if (status == google.maps.GeocoderStatus.OK) {
 			        				if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
-									var marker = new google.maps.Marker({
+									endMarker = new google.maps.Marker({
 			            							position: results[0].geometry.location,
 			            							map: map,
 			            							label: "C",
