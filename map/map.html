@@ -257,6 +257,8 @@ title>Place searches</title>
 			        	transitParagraph.style.visibility = "hidden";
 			        	introParagraph.style.visibility = "hidden";
 
+					showTransitStep1( );
+					
 						directionsService.route({
 							origin: mylocation,
 							destination: end,
@@ -286,7 +288,6 @@ title>Place searches</title>
 							travelMode: google.maps.TravelMode[travelType]
 						}, function(response, status) {
 							if (status === 'OK') {
-								showTransitStep1( );
 								directionsDisplay.setDirections(response);
 							} else {
 								window.alert('Directions request failed due to ' + status);
