@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Place searches</title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		<style>
+			/* Always set the map height explicitly to define the size of the div
+			* element that contains the map. */
+			#map {
+				height: 100%;
+			}
+			/* Optional: Makes the sample page fill the window. */
+			html, body {
+				width: 100%;
+				margin: auto;
+				padding: 0;
+			}
+			 #right-panel {
+		        font-family: 'Roboto','sans-serif';
+		        line-height: 30px;
+		        padding-left: 10px;
+	      	}
+			
+			#right-panel select, #right-panel input {
+				font-size: 15px;
+			}
+			#right-panel select {
+				width: 100%;
+			}
+			#right-panel i {
+				font-size: 12px;
+			}
+			#right-panel {
+				border: 2px solid red;
+				height: 87%;
+				float: right;
+				margin-left: 69%;
+				width: 30%;
+				margin-top: 6%;
+				position: absolute;
+				overflow: auto;
+				z-index: 0;
+			}
+			#map {
+				border:1px solid black;
+				margin-top: 6%;
+				height: 87%;
+				width: 69%;
+				position: absolute;
+				z-index: 0;
+			}
+			#result {
+				margin-left: 5em;
+			}
+			body {
+			    font-family: "Lato", sans-serif;
+			}
+			.sidenav {
+				border: 1px solid black;
+			    height: 12%;
+			    width: 95%;
+			    position: absolute;
+			    z-index: 1;
+			    top: 0;
+			    left: 0;
+			    background-color: white;
+			    overflow-x: hidden;
+			    /*transition: 0.5s;*/
+			}
+			#routeInfo{
+				border: 1px solid black;
+			}
+			/*.sidenav a {
+			    /*padding: 8px 8px 8px 32px;
+			    text-decoration: none;
+			    font-size: 25px;
+			    color: #818181;
+			    display: block;
+			    transition: 0.3s
+			}
+			.sidenav a:hover, .offcanvas a:focus{
+			    color: #f1f1f1;
+			}
+			.sidenav .closebtn {
+			    position: absolute;
+			    top: 0;
+			    right: 25px;
+			    font-size: 36px;
+			    margin-left: 50px;
+			}*/
+			/*@media screen and (max-height: 450px) {
+			  .sidenav {padding-top: 15px;}
+			  .sidenav a {font-size: 18px;}
+			}*/
+			@media print {
+				#map {
+					height: 500px;
+					margin: 0;
+				}
+				#right-panel {
+					float: none;
+					width: auto;
+				}
+			}
+		</style>
+		<script>
+			// This example requires the Places library. Include the libraries=places
+			// parameter when you first load the API. For example:
+			// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+			var map;
+			var infowindow;
+			var startMarker;
+			var shops = [];
+			var mylocation;
+			var currentLocation;
+			var clicktime = "282 2nd Street 4th floor, San Francisco, CA 94105";
+			function initMap() {
+				//alert(lantitude);
+				//alert(longitude);
+				//alert("123");
+					// getLocation();
+					// alert("mylocation = " + mylocation);
+					// mylocation = new google.maps.LatLng(37.3812799,-122.043991);
+					// mylocation = new google.maps.LatLng(lantitude, longitude);
+				var directionsDisplay = new google.maps.DirectionsRenderer;
+				var directionsService = new google.maps.DirectionsService;
+				map = new google.maps.Map(document.getElementById('map'), {
+					center : mylocation,
+					zoom: 9
+				});
+					
+					
+					
+					
+			 	navigator.geolocation.getCurrentPosition(function(position) {
+			            mylocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			            currentLocation = mylocation;
+			            
+			            var currLocButton = document.getElementById("currLoc");
+			            var startText = document.getElementById("startLoc");
+			            currLocButton.style.visibility = 'visible';
+			            startText.placeholder = "Choose start address and click Done or click Current Location";
+
+					
+			            
+				    //var infowindow = new google.maps.InfoWindow({
+			            //    map: map,
+			            //    content:
+			            //        '<h1>Location pinned from HTML5 Geolocation!</h1>' +
+			            //        '<h2>Latitude: ' + position.coords.latitude + '</h2>' +
+			            //        '<h2>Longitude: ' + position.coords.longitude + '</h2>'
+			            //});
+				  	    startMarker = new google.maps.Marker({
+						    	label : "A",
+							position: mylocation,
+							map: map,
+						    	title : "Your location"
+					    });
+	
+			            	map.setCenter(mylocation);
+					populateNearByShops( );
+			        });					
+								
+			        geocoder = new google.maps.Geocoder();
+			        if (geocoder) {
+			           	geocoder.geocode({
+						'address': clicktime
+			    			}, function(results, status) {
+			      				if (status == google.maps.GeocoderStatus.OK) {
+			        				if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+									var marker = new google.maps.Marker({
+			            							position: results[0].geometry.location,
+			            							map: map,
+			            							label: "B",
+			            							title: "ClickTime.com"});
+					       			}
+								}
+							}
+			    		);
+			  		}						
+					
+					
+					
+					directionsDisplay.setMap(map);
+					directionsDisplay.setPanel(document.getElementById('right-panel'));
+					function onClickDoneHandler() {
+						var inputAddress = document.getElementById("startLoc");
+						if(inputAddress) {
+							resetStarter(inputAddress.value);
+							directionsDisplay.setDirections({routes: []});
+						}							
+					};
+
+					function onClickCurrHandler() {
+						var inputAddress = currentLocation;	
+						if(startMarker) {
+							startMarker.setMap(null);
+									//directionsDisplay.setMap(null);
+						}
+						startMarker = new google.maps.Marker({
+						    	label : "A",
+							position: inputAddress,
+							map: map,
+						    	title : "Your location"
+					    });
+	
+			            	map.setCenter(inputAddress);
+							populateNearByShops( );
+					};
+					
+					function onClickGoHandler() {
+						calculateAndDisplayRoute(directionsService, directionsDisplay,1);
+						var startText = document.getElementById("startLoc");
+						startText.placeholder = "Choose start address and click Done or click Current Location";
+					};
+
+					function onClickNextHandler() {
+						calculateAndDisplayRoute(directionsService, directionsDisplay,2);
+					};
+					function onClickBackHandler() {
+						calculateAndDisplayRoute(directionsService, directionsDisplay,3);
+					};
+
+					document.getElementById('Done').addEventListener('click', onClickDoneHandler);
+					document.getElementById('Go').addEventListener('click', onClickGoHandler);
+					document.getElementById('Next').addEventListener('click', onClickNextHandler);
+					document.getElementById('Back').addEventListener('click', onClickBackHandler);
+					document.getElementById('currLoc').addEventListener('click', onClickCurrHandler);
+					
+					// map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+					//calculateAndDisplayRoute(directionsService, directionsDisplay);
+				}
+			
+			
+				function callback(results, status) {
+					// alert(" shops = " + status)
+					if (status === google.maps.places.PlacesServiceStatus.OK) {
+						for (var i = 0; i < results.length; i++) {
+							var shopName = results[i].name;
+							var address = results[i].formatted_address;
+							//	alert(results[i].name + " " + results[i].formatted_address);
+							//var shop = "<BR>" + results[i].name + "</BR>&nbsp&nbsp&nbsp&nbsp" + results[i].formatted_address;
+							var shop = results[i].name + " - " + results[i].formatted_address;
+							
+							var result = document.getElementById('shops');
+							var newOption = document.createElement("option");
+							newOption.text = shopName + " - " + address;
+							newOption.value = address;
+							result.add(newOption);
+							if (result.length > 21) {
+								result.remove(1);
+							}
+
+							//result.innerHTML += "<option value = "address" id='single'> "+shopName + " </select> ";
+							//result.innerHTML+=shop + "<br>"
+							// createMarker(results[i]);
+						}
+					}
+				}
+				
+			        function createMarker(place) {
+					var placeLoc = place.geometry.location;
+					var marker = new google.maps.Marker({
+						map: map,
+						position: place.geometry.location
+					});
+					google.maps.event.addListener(marker, 'click', function() {
+						infowindow.setContent(place.name);
+						infowindow.open(map, this);
+					});
+				}
+			
+				function calculateAndDisplayRoute(directionsService, directionsDisplay, travelCase) {
+					
+					if(startMarker) {
+						startMarker.setMap(null);
+					}
+					
+					//var start = "Sunnyvale CS 94086";
+					var end = "282 2nd Street 4th floor, San Francisco, CA 94105";
+					var travelType = document.getElementById('travel-type').value;
+					
+					var waypts = [];
+					var stopLocation = document.getElementById('shops').value;
+			        
+			        if(stopLocation != "n/a") {
+						waypts.push({
+			            	location: stopLocation,
+			            	stopover: true
+			            });		
+			        }
+			        if ((travelCase === 1 && travelType === "TRANSIT" && stopLocation != "n/a") || 
+			        	(travelCase === 3 && travelType === "TRANSIT" && stopLocation != "n/a")){
+			        	directionsService.route({
+							origin: mylocation,
+							destination: stopLocation,
+							travelMode: google.maps.TravelMode[travelType]
+						}, function(response, status) {
+							if (status === 'OK') {
+								/*var result = document.getElementById('result');
+								result.innerHTML= "";
+								for (var i =0; i < response.routes[0].legs[0].steps.length; i++){
+									result.innerHTML+=response.routes[0].legs[0].steps[i].instructions+"<br>"
+								}*/
+								directionsDisplay.setDirections(response);
+							} else {
+								window.alert('Directions request failed due to ' + status);
+							}
+						});
+			        } else if (travelCase ===  1 && travelType !== "TRANSIT" ) {
+						directionsService.route({
+							origin: mylocation,
+							destination: end,
+							waypoints: waypts,
+				          	optimizeWaypoints: true,
+							travelMode: google.maps.TravelMode[travelType]
+						}, function(response, status) {
+							if (status === 'OK') {
+								/*var result = document.getElementById('result');
+								result.innerHTML= "";
+								for (var i =0; i < response.routes[0].legs[0].steps.length; i++){
+									result.innerHTML+=response.routes[0].legs[0].steps[i].instructions+"<br>"
+								}*/
+								directionsDisplay.setDirections(response);
+							} else {
+								window.alert('Directions request failed due to ' + status);
+							}
+						});
+			        } else if (travelCase === 1 && travelType === "TRANSIT" && stopLocation === "n/a"){
+			        	directionsService.route({
+							origin: mylocation,
+							destination: end,
+							travelMode: google.maps.TravelMode[travelType]
+						}, function(response, status) {
+							if (status === 'OK') {
+								/*var result = document.getElementById('result');
+								result.innerHTML= "";
+								for (var i =0; i < response.routes[0].legs[0].steps.length; i++){
+									result.innerHTML+=response.routes[0].legs[0].steps[i].instructions+"<br>"
+								}*/
+								directionsDisplay.setDirections(response);
+							} else {
+								window.alert('Directions request failed due to ' + status);
+							}
+						});
+			        } else if (travelCase == 2 && travelType === "TRANSIT" && stopLocation != "n/a"){
+			        	directionsService.route({
+							origin: stopLocation,
+							destination: end,
+							travelMode: google.maps.TravelMode[travelType]
+						}, function(response, status) {
+							if (status === 'OK') {
+								/*var result = document.getElementById('result');
+								result.innerHTML= "";
+								for (var i =0; i < response.routes[0].legs[0].steps.length; i++){
+									result.innerHTML+=response.routes[0].legs[0].steps[i].instructions+"<br>"
+								}*/
+								directionsDisplay.setDirections(response);
+							} else {
+								window.alert('Directions request failed due to ' + status);
+							}
+						});
+			        }
+			        	
+					
+				}
+				/*function openNav() {
+				    document.getElementById("mySidenav").style.width = "100%";
+				}
+				function closeNav() {
+				    document.getElementById("mySidenav").style.width = "0%";
+				}*/
+			function populateNearByShops( ) {				
+	     	    	var request = { location: mylocation ,
+						radius: '500',
+						query: 'coffee shop'
+ 					      };
+		    		var service = new google.maps.places.PlacesService(map);
+		    		service.textSearch(request, callback);
+			}				
+			
+			function resetStarter(starterLocation) {
+				// alert(starterLocation);
+				geocoder = new google.maps.Geocoder();
+				if (geocoder) {
+					geocoder.geocode({
+						'address': starterLocation
+				    		}, function(results, status) {
+						if (status == google.maps.GeocoderStatus.OK) {
+			        			if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+									resetCoords(results[0].geometry.location);
+									
+				       			}
+							}
+						});
+			  	}
+			}
+
+			function resetCoords(starterCoords) {
+				if(startMarker) {
+					startMarker.setMap(null);
+					//directionsDisplay.setMap(null);
+				}
+				
+  	    		startMarker = new google.maps.Marker({
+    				label : "A",
+ 					position: starterCoords,
+					map: map,
+    				title : starterLocation
+				});
+
+  				mylocation = starterCoords;
+            	map.setCenter(mylocation);
+				populateNearByShops();
+			}
+			
+		</script>
+		
+                      
+		 
+	</head>
+	<body>
+		<div id="right-panel"></div>
+		<div id="mySidenav" class = "sidenav">
+			<!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
+			<b>Mode of Travel: </b>
+				<select id="travel-type">
+					<option value="WALKING">Walking</option>
+					<option value="BICYCLING">Bicycling</option>
+					<option value="TRANSIT">Transit</option>
+				</select>
+			<b>Coffee Shops Near You: </b>
+				<select id = "shops">
+					<option value = "n/a">Please select a coffee shop near you</option>
+				</select>
+			<button id = "Go">GO</button>
+			<button id = "Next">NEXT</button>
+			<button id = "Back">BACK</button>
+			<table id = "routeInfo">
+				<tr id = "startLocationRow">
+					<td id = "startLocation">
+						Start Location: <input style = "width: 28em" id="startLoc" placeholder="Choose start address and click Done"> 
+						<button id = "Done">DONE</button>
+					</td>
+					<td id = "startLocationVal">
+						<button style = "visibility : hidden" id="currLoc" name="btn">Current Location</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<!--<div id = "openSide">
+				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+		</div>-->
+		<div id="map">
+		</div>
+		
+		<div id="result"></div>
+
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhmQhmm2y8RjgvdL356Shbljh0Qt6DWbw&libraries=places&callback=initMap" async defer></script> 
+	</body>
+</html>
