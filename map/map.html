@@ -310,6 +310,7 @@ title>Place searches</title>
 						}, function(response, status) {
 							if (status === 'OK') {
 								directionsDisplay.setDirections(response);
+								showTransitStep1( );
 							} else {
 								window.alert('Directions request failed due to ' + status);
 							}
@@ -455,12 +456,14 @@ title>Place searches</title>
 						</td>
 						<td>
 						    <div id = "transitParagraph">
+							    <!--
 								<h5>Transit Step1</h5>
 								<p style = "font-size:12px;" >
 									This is the route between <b><I>your starting location</b></I> and the <b><I>coffee shop</b></I> you selected.
 									<br><br>
 									Click <b><I><a href="javascript:showTransitStep2()"></b></I> Transit Step 2</a> to view the route from the <b><I>coffee shop</b></I>to <b><I>ClickTime headquarters</b></I>. 
 							    </p>
+-->
 							</div>
 					</tr>
 				</table>
