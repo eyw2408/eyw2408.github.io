@@ -383,7 +383,6 @@ title>Place searches</title>
 
 			function showTransitStep1()	{
 				alert("123");
-				alert(transit2div);
 	        	var transit1div = document.getElementById("transitParagraph");
                 var transit1Html = "<h5>Transit Step1</h5>" +
 								   "<p style = \"font-size:12px;\" >" + 
@@ -393,7 +392,7 @@ title>Place searches</title>
 								   "to view the route from the <b><I>coffee shop</b></I> to <b><I>ClickTime headquarters</b></I>." + 
 								   "</p>" ;
 
-				//alert(transit1Html);
+				alert(transit1Html);
 			    transit1div.innerHTML = transit1Html;
 				transitStep = 1;
 				calculateAndDisplayRoute(directionsService, directionsDisplay,2);
