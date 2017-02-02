@@ -286,6 +286,7 @@ title>Place searches</title>
 							travelMode: google.maps.TravelMode[travelType]
 						}, function(response, status) {
 							if (status === 'OK') {
+								showTransitStep1( );
 								directionsDisplay.setDirections(response);
 							} else {
 								window.alert('Directions request failed due to ' + status);
@@ -310,7 +311,6 @@ title>Place searches</title>
 						}, function(response, status) {
 							if (status === 'OK') {
 								directionsDisplay.setDirections(response);
-								showTransitStep1( );
 							} else {
 								window.alert('Directions request failed due to ' + status);
 							}
@@ -381,6 +381,8 @@ title>Place searches</title>
 			}
 
 			function showTransitStep1()	{
+				alert("123");
+				alert(transit2div);
 	        	var transit1div = document.getElementById("transitParagraph");
                 var transit1Html = "<h5>Transit Step1</h5>" +
 								   "<p style = \"font-size:12px;\" >" + 
