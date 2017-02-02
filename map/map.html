@@ -49,7 +49,7 @@ title>Place searches</title>
 			}
 			#map {
 				margin-top: 8%;
-				height: 80%;
+				height: 82%;
 				width: 69%;
 				position: absolute;
 				z-index: 0;
@@ -259,6 +259,14 @@ title>Place searches</title>
 			        	transitParagraph.style.visibility = "hidden";
 			        	introParagraph.style.visibility = "hidden";
 					
+					if(stopLocation === "n/a") {
+						showTransitStep();
+					}
+					else {
+	                                        showTransitStepNoStop( );
+					}
+						
+					
 						directionsService.route({
 							origin: mylocation,
 							destination: end,
@@ -280,7 +288,7 @@ title>Place searches</title>
 			        	// transit2Button.style.visibility = "hidden";
 			        	transitParagraph.style.visibility = "hidden";
 			        	introParagraph.style.visibility = "hidden";
-
+                                        showTransitStepNoStop( );
 
 			        	directionsService.route({
 							origin: mylocation,
@@ -396,6 +404,30 @@ title>Place searches</title>
 				if(caculateRoute) {
 					calculateAndDisplayRoute(directionsService, directionsDisplay,2);
 				}					
+			}
+			
+			
+			function showTransitStep()	{
+	        	var transitdiv = document.getElementById("transitParagraph");
+                var transitHtml = "<h5>Route</h5>" +
+								   "<p style = \"font-size:12px;\" >" + 
+								   "This is the route between <b><I>your starting location (A)</b></I> and the <b><I>ClickTime headquarters(C) </b></I>" +
+								   "via the <b><I>coffee shop (B) </b></I> you selected" + 
+								   "</p>" ;
+
+				
+			    transitdiv.innerHTML = transitHtml;
+			}
+
+			function showTransitStepNoStop()	{
+	        	var transitdiv = document.getElementById("transitParagraph");
+                var transitHtml = "<h5>Route</h5>" +
+								   "<p style = \"font-size:12px;\" >" + 
+								   "This is the route between <b><I>your starting location (A)</b></I> and the <b><I>ClickTime headquarters(C) </b></I>." +
+								   "</p>" ;
+
+				
+			    transitdiv.innerHTML = transitHtml;
 			}
 			
 		</script>
