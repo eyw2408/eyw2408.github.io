@@ -398,7 +398,7 @@ title>Place searches</title>
 								   "to view the route from the <b><I>coffee shop</b></I> to <b><I>ClickTime headquarters</b></I>." + 
 								   "</p>" ;
 
-				alert(transit1Html);
+				// alert(transit1Html);
 			    transit1div.innerHTML = transit1Html;
 				transitStep = 1;
 				if(caculateRoute) {
@@ -408,6 +408,7 @@ title>Place searches</title>
 			
 			
 			function showTransitStep()	{
+				alert("123");
 	        	var transitdiv = document.getElementById("transitParagraph");
                 var transitHtml = "<h5>Route</h5>" +
 								   "<p style = \"font-size:12px;\" >" + 
@@ -420,6 +421,7 @@ title>Place searches</title>
 			}
 
 			function showTransitStepNoStop()	{
+				alert("123");
 	        	var transitdiv = document.getElementById("transitParagraph");
                 var transitHtml = "<h5>Route</h5>" +
 								   "<p style = \"font-size:12px;\" >" + 
@@ -489,16 +491,8 @@ title>Place searches</title>
 						<td style = "min-width: 5em">
 						</td>
 						<td>
-						    <div id = "transitParagraph">
-							    <!--
-								<h5>Transit Step1</h5>
-								<p style = "font-size:12px;" >
-									This is the route between <b><I>your starting location</b></I> and the <b><I>coffee shop</b></I> you selected.
-									<br><br>
-									Click <b><I><a href="javascript:showTransitStep2()"></b></I> Transit Step 2</a> to view the route from the <b><I>coffee shop</b></I>to <b><I>ClickTime headquarters</b></I>. 
-							    </p>
--->
-							</div>
+					        <div id = "transitParagraph">
+ 						</div>
 					</tr>
 				</table>
 			</div>
