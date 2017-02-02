@@ -256,18 +256,18 @@ title>Place searches</title>
 
 			        	var transitParagraph = document.getElementById("transitParagraph");
 			        	var introParagraph = document.getElementById("introParagraph");
-			        	transitParagraph.style.visibility = "hidden";
+			        	transitParagraph.style.visibility = "visible";
 			        	introParagraph.style.visibility = "hidden";
 					
 						alert("111");
-					if(stopLocation == "n/a") {
-						alert("123");
-						showTransitStep();
-					}
-					else {
-						alert("456");
-	                                        showTransitStepNoStop( );
-					}
+						if(stopLocation == "n/a") {
+							alert("456");
+	                                        	showTransitStepNoStop( );
+						}
+						else {
+							alert("123");
+							showTransitStep();
+						}
 						
 					
 						directionsService.route({
@@ -289,7 +289,7 @@ title>Place searches</title>
 			        	var transitParagraph = document.getElementById("transitParagraph");
 			        	var introParagraph = document.getElementById("introParagraph");
 			        	// transit2Button.style.visibility = "hidden";
-			        	transitParagraph.style.visibility = "hidden";
+			        	transitParagraph.style.visibility = "visible";
 			        	introParagraph.style.visibility = "hidden";
                                         showTransitStepNoStop( );
 
