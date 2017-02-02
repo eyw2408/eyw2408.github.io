@@ -184,23 +184,9 @@
 
 					function onClickCurrHandler() {
 						resetStarterByCoords(currentGPALocation, yourlocationTitle);
-/**
-						if(startMarker) {
-							startMarker.setMap(null);
-									//directionsDisplay.setMap(null);
-						}
-						startMarker = new google.maps.Marker({
-						    	label : "A",
-							position: inputAddress,
-							map: map,
-						    	title : "Your location"
-					    });
-	
-			            	map.setCenter(inputAddress);
-							populateNearByShops( );
-**/							
-					};
-					
+						directionsDisplay.setDirections({routes: []});
+					}
+				
 					function onClickGoHandler() {
 						calculateAndDisplayRoute(directionsService, directionsDisplay,1);
 						var startText = document.getElementById("startLoc");
