@@ -259,13 +259,10 @@ title>Place searches</title>
 			        	transitParagraph.style.visibility = "visible";
 			        	introParagraph.style.visibility = "hidden";
 					
-						alert("111");
 						if(stopLocation == "n/a") {
-							alert("456");
 	                                        	showTransitStepNoStop( );
 						}
 						else {
-							alert("123");
 							showTransitStep();
 						}
 						
@@ -411,7 +408,6 @@ title>Place searches</title>
 			
 			
 			function showTransitStep()	{
-				alert("123");
 	        	var transitdiv = document.getElementById("transitParagraph");
                 var transitHtml = "<h5>Route</h5>" +
 								   "<p style = \"font-size:12px;\" >" + 
@@ -424,7 +420,6 @@ title>Place searches</title>
 			}
 
 			function showTransitStepNoStop()	{
-				alert("123");
 	        	var transitdiv = document.getElementById("transitParagraph");
                 var transitHtml = "<h5>Route</h5>" +
 								   "<p style = \"font-size:12px;\" >" + 
