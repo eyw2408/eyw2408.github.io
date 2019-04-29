@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8' />
-  <title>Display a map</title>
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
-  <style>
-    body { margin:0; padding:0; }
-    #map { position:absolute; top:0; bottom:0; width:100%; }
-  </style>
+<meta charset='utf-8' />
+<title>Display a map</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
 </head>
 <body>
 
@@ -20,20 +20,20 @@ var bounds = [
 [-140.031702, 29.987413], 
 [-103.749429, 46.209241]  
 ];
-
 mapboxgl.accessToken = 'pk.eyJ1IjoiZXl3MjQwOCIsImEiOiJjanNjamthaXUwZXcxNDNwbjJ1ZjJqMmh1In0.I6heH0Bw8NJySpP0L7ukJg';
-const map = new mapboxgl.Map({
+  const map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/eyw2408/cjuhsa2g05p7b1gutamyeueef',
+  style: 'mapbox://styles/eyw2408/cjuhrmna55m6r1fmujopamshi',
   center: [-118.9529, 37.9219],
   zoom: 4, 
   maxBounds: bounds
 });
+
 var popup = new mapboxgl.Popup({
   closeButton: false,
   closeOnClick: false
 });
-map.on('click', 'median-income-ca-county-7d62ap', function (e) {
+map.on('click', 'median-income-ca-county-7d62ap copy', function (e) {
   var coordinates = e.features[0].geometry.coordinates.slice();
   var description = "Median Income: " + e.features[0].properties.Median_Income + ", " + "Population: " + e.features[0].properties.Population;
 
@@ -46,7 +46,7 @@ map.on('click', 'median-income-ca-county-7d62ap', function (e) {
     .setHTML(description)
     .addTo(map);
 });
-map.on('mouseenter', 'median-income-ca-county-7d62ap', function (e) {
+map.on('mouseenter', 'median-income-ca-county-7d62ap copy', function (e) {
   map.getCanvas().style.cursor = 'pointer';
   var coordinates = e.features[0].geometry.coordinates.slice();
   var description = e.features[0].properties.County
@@ -57,7 +57,7 @@ map.on('mouseenter', 'median-income-ca-county-7d62ap', function (e) {
     .setHTML(description)
     .addTo(map);
 });
-map.on('mouseleave', 'median-income-ca-county-7d62ap', function () {
+map.on('mouseleave', 'median-income-ca-county-7d62ap copy', function () {
   map.getCanvas().style.cursor = '';
   popup.remove();
 });
@@ -65,7 +65,7 @@ map.on('mouseleave', 'median-income-ca-county-7d62ap', function () {
 <style>
  
 .legend {
-background-color: #fff;
+background-color: #eee;
 border-radius: 3px;
 bottom: 30px;
 box-shadow: 0 1px 2px rgba(0,0,0,0.10);
