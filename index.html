@@ -16,15 +16,15 @@
 <div id='map'></div>
 <script>
 var bounds = [
-  [-128.031702, 30.987413], 
-  [-110.749429, 43.209241]  
+  [-130.031702, 28.987413], 
+  [-110.749429, 45.209241]  
 ];
 mapboxgl.accessToken = 'pk.eyJ1IjoiZXl3MjQwOCIsImEiOiJjanNjamthaXUwZXcxNDNwbjJ1ZjJqMmh1In0.I6heH0Bw8NJySpP0L7ukJg';
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/eyw2408/cjva4hhdz8lcf1fpebuxkdu16',
   center: [-119.250986, 37.029009],
-  zoom: 2, 
+  zoom: 0, 
   maxBounds: bounds
 });
 
@@ -133,7 +133,9 @@ map.on('mouseleave', 'census-county-economically-di-6aga41 (1)', function () {
 <p>Choropleth map showing the median household income for each <br>
   county in California. <br>
   Zooming in show cities with label sizes relative to their median <br> income. <br>
-  Get more information by clicking on each county or city.</p>
+  Get more information by clicking on each county or city.
+  <br> <strong>Data Sources</strong>: https://data.cnra.ca.gov/dataset/census<br>-county-economically-distressed-areas-2016
+  <br> https://www.kaggle.com/goldenoakresearch/<br>us-household-income-stats-geo-locations</p>
   <b
 
 </div>
